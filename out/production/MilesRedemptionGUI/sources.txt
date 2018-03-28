@@ -1,0 +1,7 @@
+http://www.java2s.com/Tutorial/Java/0240__Swing/UsingaBorderLayoutManager.htm
+
+http://www.chegg.com/homework-help/questions-and-answers/java-assignment-re-implement-air-ticket-redeemer-refer-output-screen-destination-class-rem-q23362919
+
+https://docs.oracle.com/javase/tutorial/uiswing/events/listselectionlistener.html
+
+https://github.com/BranislavLazic/SwingTutorials/blob/master/src/main/java/JListTutorial.java

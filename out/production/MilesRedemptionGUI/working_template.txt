@@ -1,0 +1,117 @@
+import java.awt.*;
+
+import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
+
+public class Main {
+    public static void main(String[] args) {
+        JFrame aWindow = new JFrame("Airplane Mileage Redeemer");
+
+
+
+    /* START: CONTENT PANE */
+        aWindow.setBounds(200, 200, 950, 350); // Size
+        aWindow.setResizable(false); //disable window resize
+        aWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        BorderLayout border1 = new BorderLayout();
+        BorderLayout border2 = new BorderLayout(11,11);
+        BorderLayout border3 = new BorderLayout(7,7);
+
+        GridLayout grid1 = new GridLayout(4, 2, 10, 8);
+        GridLayout grid2 = new GridLayout (3,1);
+
+        FlowLayout flow = new FlowLayout();
+
+        Container content = aWindow.getContentPane(); // Get the content pane
+        content.setLayout(border1); // Set the container layout manager
+
+        //Create a lowered, etched border to use alongside titled border
+        Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
+        //"List of Destination Cities" title border
+        TitledBorder listOfDestinationCitiesTitle = BorderFactory.createTitledBorder(loweredetched, "List of Destination Cities");
+        //"Redeem Tickets" title border
+        TitledBorder redeemTicketsTitle = BorderFactory.createTitledBorder(loweredetched, "Redeem Tickets");
+    /* END: CONTENT PANE */
+
+
+
+
+    /* START: CONTENT PANE'S BorderLayout.LINE_START */
+        JPanel citiesPanel = new JPanel();
+        JPanel previewPanel = new JPanel();
+        JScrollPane citiesScrollList = new JScrollPane();
+
+        content.add(citiesPanel, BorderLayout.LINE_START); //Adding citiesPanel to content pane
+        citiesPanel.setPreferredSize(new Dimension(300, 350));
+        citiesPanel.setBackground(Color.CYAN);
+        citiesPanel.setBorder(listOfDestinationCitiesTitle);
+        citiesPanel.setLayout(border2); //Creating a layout for citiesPanel
+        //JList<Destination> destinationJList = new JList<>;
+
+            /* citiesScrollList */
+            citiesPanel.add(citiesScrollList, BorderLayout.PAGE_START); //Add citiesScrollList to citiesPanel's PAGE_START
+            citiesScrollList.setPreferredSize(new Dimension(280,150));
+                //citiesScrollList.add(destinationJList);
+                //visibleRowCount for the list has been set to 9 and the fixedCellWidth has been set to 5
+            /* citiesScrollList */
+
+            /* previewPanel */
+            citiesPanel.add(previewPanel, BorderLayout.CENTER);
+            previewPanel.setLayout(grid1);
+                //Previews the attributes of a selected city
+            /* previewPanel */
+
+    /* END: CONTENT PANE'S BorderLayout.LINE_START */
+
+
+
+    /* START: CONTENT PANE'S BorderLayout.CENTER */
+        JPanel redeemTicketsPanel = new JPanel();
+        JPanel panelFour = new JPanel();
+            //nested in panelFour, each use FlowLayout(flow):
+            JPanel panelFive = new JPanel();
+            JPanel panelSix = new JPanel();
+            JPanel panelSeven = new JPanel();
+        JTextArea textArea = new JTextArea(8, 40);
+        JPanel panelEight = new JPanel();
+
+        content.add(redeemTicketsPanel, BorderLayout.CENTER);
+        redeemTicketsPanel.setBorder(redeemTicketsTitle);
+        redeemTicketsPanel.setBackground(Color.PINK);
+        redeemTicketsPanel.setLayout(border3);
+
+        redeemTicketsPanel.add(panelFour, BorderLayout.PAGE_START);
+        panelFour.setLayout(grid2);
+        panelFour.setPreferredSize(new Dimension(4,120));
+                //each nested panel is 40px
+        panelFour.setBackground(Color.RED);
+
+        panelFour.add(panelFive);
+            panelFive.setLayout(flow);
+            panelFive.setPreferredSize(new Dimension(4,40));
+            panelFive.setBackground(Color.GREEN);
+        panelFour.add(panelSix);
+            panelSix.setLayout(flow);
+            panelSix.setPreferredSize(new Dimension(4,40));
+            panelSix.setBackground(Color.BLUE);
+        panelFour.add(panelSeven);
+            panelSeven.setLayout(flow);
+            panelSeven.setPreferredSize(new Dimension(4,40));
+            panelSeven.setBackground(Color.YELLOW);
+
+        redeemTicketsPanel.add(textArea, BorderLayout.CENTER);
+
+        redeemTicketsPanel.add(panelEight, BorderLayout.PAGE_END);
+            panelEight.setLayout(flow);
+            panelEight.setPreferredSize(new Dimension(4,40));
+            panelEight.setBackground(Color.ORANGE);
+
+
+    /* END: Content PANE'S BorderLayout.CENTER */
+
+        aWindow.setVisible(true); // Display the window
+    }
+}
