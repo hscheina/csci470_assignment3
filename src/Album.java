@@ -1,6 +1,6 @@
 public class Album {
     // these variables hold the respective variables from Itunes library
-    private String name,
+    private String name, //album name
             artistName,
             genre;
 
@@ -9,6 +9,12 @@ public class Album {
         name = "";
         artistName = "";
         genre = "";
+    }
+
+    public Album(String al, String ar, String ge){
+        setName(al);
+        setArtistName(ar);
+        setGenre(ge);
     }
 
 

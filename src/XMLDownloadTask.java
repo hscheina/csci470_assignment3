@@ -1,7 +1,11 @@
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+
 import javax.swing.*;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -25,16 +29,20 @@ public class XMLDownloadTask{
     //default constructor
     public XMLDownloadTask(){
         xmlString = "";
+        albumList = new ArrayList<>();
     }
 
     //string constructor
     public XMLDownloadTask(String url){
         xmlString = "https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/10/explicit.atom\n";
+        albumList = new ArrayList<>();
         doInBackground();
 
     }
 
     public void doInBackground(){
+
+
         HttpURLConnection connection = null;
         try{
             //create a url object from a String that contains a valid URL
@@ -66,10 +74,11 @@ public class XMLDownloadTask{
 
                 //convert the stringbuilder object to a string
                 xmlString = xmlResponse.toString();
-
+                AlbumHandler albumHandler = new AlbumHandler(xmlString, this);
                 /*
                     do something to process the xml in xmlstring
                  */
+                saxParser(xmlString);
                 //close the input stream
                 input.close();
             }
@@ -96,6 +105,35 @@ public class XMLDownloadTask{
 //
 //        xmlString = s;
 //    }
+    //string xml cointains the xml downloaded from itunes. this method
+    // has to store the contents into a album container
+    public void saxParser(String xml){
+        try{
+            //create an instance of the class saxparser
+            SAXParserFactory factory = SAXParserFactory.newInstance();
+            SAXParser betterThanSax = factory.newSAXParser(); //( ͡° ͜ʖ ͡°)
+
+            //call the parse method for the parser, passing it the xmlstring and
+            // an instance of a subclass of DefaultHandler that you have written
+            // to parse the xml
+            betterThanSax.parse(new InputSource(new ByteArrayInputStream(
+                    xmlString.getBytes("utf-8"))), new AlbumHandler());
+
+
+
+
+        } catch (ParserConfigurationException e){
+            System.out.println("sax config error");
+        } catch (SAXException e){
+            System.out.println("sax parser error");
+        } catch (UnsupportedEncodingException e){
+            System.out.println("unsupported enconding error");
+        } catch (IOException e){
+            System.out.println("IO error");
+        }
+
+
+    }
 
     public static void main(String[] args){
         String testString = "https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/10/explicit.atom\n";
