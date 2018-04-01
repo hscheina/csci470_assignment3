@@ -41,7 +41,7 @@ public class XMLDownloadTask{
     }
     //string constructor
     public XMLDownloadTask(String url){
-        xmlString = "https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/10/explicit.atom\n";
+        xmlString = getURL();
         albumList = new ArrayList<>();
         doInBackground();
 
@@ -53,8 +53,7 @@ public class XMLDownloadTask{
         HttpURLConnection connection = null;
         try{
             //create a url object from a String that contains a valid URL
-            URL url = new URL("https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/10/explicit.atom\n"
-);
+            URL url = new URL(xmlString);
             //open an http connection for the url
             connection = (HttpURLConnection) url.openConnection();
 
