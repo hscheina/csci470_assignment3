@@ -1,3 +1,5 @@
+import javafx.scene.control.ToggleGroup;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -8,9 +10,8 @@ import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.event.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.DateFormatSymbols;
@@ -39,62 +40,32 @@ public class DrawGui extends JFrame{
 //Create the menu bar.
         JMenuBar menuBar = new JMenuBar();
         JMenu typeMenu = new JMenu("Type");
-        JCheckBoxMenuItem new_music_MenuItem = new JCheckBoxMenuItem("New Music");
-        JCheckBoxMenuItem recent_releases_MenuItem = new JCheckBoxMenuItem("Recent Releases");
-        JCheckBoxMenuItem top_albums_MenuItem = new JCheckBoxMenuItem("Top Albums");
-            typeMenu.addActionListener(actionEvent -> {
-                if (new_music_MenuItem.isSelected()) {
-                    recent_releases_MenuItem.setSelected(false);
-                    top_albums_MenuItem.setSelected(false);
-                }
-                if (recent_releases_MenuItem.isSelected()) {
-                    new_music_MenuItem.setSelected(false);
-                    top_albums_MenuItem.setSelected(false);
-                }
-                if (top_albums_MenuItem.isSelected()) {
-                    new_music_MenuItem.setSelected(false);
-                    recent_releases_MenuItem.setSelected(false);
-                }
-            });
+        JRadioButtonMenuItem new_music_MenuItem = new JRadioButtonMenuItem("New Music");
+        JRadioButtonMenuItem recent_releases_MenuItem = new JRadioButtonMenuItem("Recent Releases");
+        JRadioButtonMenuItem top_albums_MenuItem = new JRadioButtonMenuItem("Top Albums");
+            ButtonGroup typeButtonGroup = new ButtonGroup();
+            typeButtonGroup.add(new_music_MenuItem);
+            typeButtonGroup.add(recent_releases_MenuItem);
+            typeButtonGroup.add(top_albums_MenuItem);
 
         JMenu limitMenu = new JMenu("Limit");
-        JCheckBoxMenuItem menuItem10 = new JCheckBoxMenuItem("10");
-        JCheckBoxMenuItem menuItem25 = new JCheckBoxMenuItem("25");
-        JCheckBoxMenuItem menuItem50 = new JCheckBoxMenuItem("50");
-        JCheckBoxMenuItem menuItem100 = new JCheckBoxMenuItem("100");
-            limitMenu.addActionListener(actionEvent -> {
-                if (menuItem10.isSelected()) {
-                    menuItem25.setSelected(false);
-                    menuItem50.setSelected(false);
-                    menuItem100.setSelected(false);
-                }
-                if (menuItem25.isSelected()) {
-                    menuItem10.setSelected(false);
-                    menuItem50.setSelected(false);
-                    menuItem100.setSelected(false);
-                }
-                if (menuItem50.isSelected()) {
-                    menuItem10.setSelected(false);
-                    menuItem25.setSelected(false);
-                    menuItem100.setSelected(false);
-                }
-                if (menuItem100.isSelected()) {
-                    menuItem10.setSelected(false);
-                    menuItem25.setSelected(false);
-                    menuItem50.setSelected(false);
-                }
-            });
+        JRadioButtonMenuItem menuItem10 = new JRadioButtonMenuItem("10");
+        JRadioButtonMenuItem menuItem25 = new JRadioButtonMenuItem("25");
+        JRadioButtonMenuItem menuItem50 = new JRadioButtonMenuItem("50");
+        JRadioButtonMenuItem menuItem100 = new JRadioButtonMenuItem("100");
+            ButtonGroup itemsButtonGroup = new ButtonGroup();
+            itemsButtonGroup.add(menuItem10);
+            itemsButtonGroup.add(menuItem25);
+            itemsButtonGroup.add(menuItem50);
+            itemsButtonGroup.add(menuItem100);
+
         JMenu explicitMenu = new JMenu("Explicit");
         JCheckBoxMenuItem yes_menuItem = new JCheckBoxMenuItem("Yes");
         JCheckBoxMenuItem no_menuItem = new JCheckBoxMenuItem("No");
-            explicitMenu.addActionListener(actionEvent -> {
-                if (yes_menuItem.isSelected()) {
-                    no_menuItem.setSelected(false);
-                }
-                if (no_menuItem.isSelected()) {
-                    yes_menuItem.setSelected(false);
-                }
-            });
+            ButtonGroup explicitGroup = new ButtonGroup();
+            explicitGroup.add(yes_menuItem);
+            explicitGroup.add(no_menuItem);
+
         JButton getAlbums = new JButton("Get Albums");
         getAlbums.setPreferredSize(new Dimension(100,20));
         JPanel buttonPanel = new JPanel(new FlowLayout());
