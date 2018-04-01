@@ -300,6 +300,9 @@ public class DrawGui extends JFrame{
                 JOptionPane.showMessageDialog(null, "Please select a type, limit, and explicit content preference","Error",JOptionPane.ERROR_MESSAGE);
 
             }
+
+
+            // TODO: 4/1/18 ADD THE ALBUM LIST TO THE RESULTSPANE 
         });
 
 

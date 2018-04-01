@@ -39,6 +39,11 @@ public class XMLDownloadTask{
     public String getURL() {
         return xmlString;
     }
+
+    public ArrayList<Album> getAlbumList() {
+        return albumList;
+    }
+
     //string constructor
     public XMLDownloadTask(String url){
         xmlString = getURL();
