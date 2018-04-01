@@ -32,8 +32,11 @@ public class XMLDownloadTask{
         albumList = new ArrayList<>();
     }
 
-    public String setURL(String xmlURL) {
+    public void setURL(String xmlURL) {
         xmlString = xmlURL;
+    }
+
+    public String getURL() {
         return xmlString;
     }
     //string constructor

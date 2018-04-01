@@ -111,8 +111,11 @@ public class DrawGui extends JFrame{
             else if (menuItem50.isSelected()) {
                 itemsNum = menuItem50.getText();
             }
-            else {
+            else if (menuItem100.isSelected()) {
                 itemsNum = menuItem100.getText();
+            }
+            else {
+                itemsNum=null;
             }
             System.out.println(itemsNum);
 
@@ -122,17 +125,23 @@ public class DrawGui extends JFrame{
             else if (recent_releases_MenuItem.isSelected()) {
                 typeSelection = recent_releases_MenuItem.getText();
             }
-            else {
+            else  if (top_albums_MenuItem.isSelected()) {
                 typeSelection = top_albums_MenuItem.getText();
 
+            }
+            else {
+                typeSelection=null;
             }
             System.out.println(typeSelection);
 
             if (yes_menuItem.isSelected()) {
                 explicitYN = yes_menuItem.getText();
             }
-            else {
+            else if (no_menuItem.isSelected()) {
                 explicitYN = no_menuItem.getText();
+            }
+            else {
+                explicitYN=null;
             }
             System.out.println(explicitYN);
 
@@ -141,30 +150,36 @@ public class DrawGui extends JFrame{
                     if (explicitYN=="Yes") {
                         //send THIS url to XML method
                         XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/10/explicit.atom");
+                        System.out.println(XMLstuff.getURL());
                     }
                     if (explicitYN=="No") {
                         //send THIS url to XML method
                         XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/10/nonexplicit.atom");
+                        System.out.println(XMLstuff.getURL());
                     }
                 }
                 if (typeSelection=="Recent Releases") {
                     if (explicitYN=="Yes") {
                         //send THIS url to XML method
                         XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/recent-releases/all/10/explicit.atom");
+                        System.out.println(XMLstuff.getURL());
                     }
                     if (explicitYN=="No") {
                         //send THIS url to XML method
                         XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/recent-releases/all/10/nonexplicit.atom");
+                        System.out.println(XMLstuff.getURL());
                     }
                 }
                 if (typeSelection=="Top Albums") {
                     if (explicitYN=="Yes") {
                         //send THIS url to XML method
                         XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/top-albums/all/10/explicit.atom");
+                        System.out.println(XMLstuff.getURL());
                     }
                     if (explicitYN=="No") {
                         //send THIS url to XML method
                         XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/top-albums/all/10/nonexplicit.atom");
+                        System.out.println(XMLstuff.getURL());
                     }
                 }
             }
@@ -174,30 +189,36 @@ public class DrawGui extends JFrame{
                     if (explicitYN=="Yes") {
                         //send THIS url to XML method
                         XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/25/explicit.atom");
+                        System.out.println(XMLstuff.getURL());
                     }
                     if (explicitYN=="No") {
                         //send THIS url to XML method
                         XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/25/nonexplicit.atom");
+                        System.out.println(XMLstuff.getURL());
                     }
                 }
                 if (typeSelection=="Recent Releases") {
                     if (explicitYN=="Yes") {
                         //send THIS url to XML method
                         XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/recent-releases/all/25/explicit.atom");
+                        System.out.println(XMLstuff.getURL());
                     }
                     if (explicitYN=="No") {
                         //send THIS url to XML method
                         XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/recent-releases/all/25/nonexplicit.atom");
+                        System.out.println(XMLstuff.getURL());
                     }
                 }
                 if (typeSelection=="Top Albums") {
                     if (explicitYN=="Yes") {
                         //send THIS url to XML method
                         XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/top-albums/all/25/explicit.atom");
+                        System.out.println(XMLstuff.getURL());
                     }
                     if (explicitYN=="No") {
                         //send THIS url to XML method
                         XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/top-albums/all/25/nonexplicit.atom");
+                        System.out.println(XMLstuff.getURL());
                     }
                 }
             }
@@ -207,30 +228,36 @@ public class DrawGui extends JFrame{
                     if (explicitYN=="Yes") {
                         //send THIS url to XML method
                         XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/50/explicit.atom");
+                        System.out.println(XMLstuff.getURL());
                     }
                     if (explicitYN=="No") {
                         //send THIS url to XML method
                         XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/50/nonexplicit.atom");
+                        System.out.println(XMLstuff.getURL());
                     }
                 }
                 if (typeSelection=="Recent Releases") {
                     if (explicitYN=="Yes") {
                         //send THIS url to XML method
                         XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/recent-releases/all/50/explicit.atom");
+                        System.out.println(XMLstuff.getURL());
                     }
                     if (explicitYN=="No") {
                         //send THIS url to XML method
                         XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/recent-releases/all/50/nonexplicit.atom");
+                        System.out.println(XMLstuff.getURL());
                     }
                 }
                 if (typeSelection=="Top Albums") {
                     if (explicitYN=="Yes") {
                         //send THIS url to XML method
                         XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/top-albums/all/50/explicit.atom");
+                        System.out.println(XMLstuff.getURL());
                     }
                     if (explicitYN=="No") {
                         //send THIS url to XML method
                         XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/top-albums/all/50/nonexplicit.atom");
+                        System.out.println(XMLstuff.getURL());
                     }
                 }
             }
@@ -266,6 +293,12 @@ public class DrawGui extends JFrame{
                         XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/top-albums/all/100/nonexplicit.atom");
                     }
                 }
+            }
+
+
+            if (itemsNum==null || typeSelection==null || explicitYN==null) {
+                JOptionPane.showMessageDialog(null, "Please select a type, limit, and explicit content preference","Error",JOptionPane.ERROR_MESSAGE);
+
             }
         });
 
