@@ -32,6 +32,10 @@ public class XMLDownloadTask{
         albumList = new ArrayList<>();
     }
 
+    public String setURL(String xmlURL) {
+        xmlString = xmlURL;
+        return xmlString;
+    }
     //string constructor
     public XMLDownloadTask(String url){
         xmlString = "https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/10/explicit.atom\n";
