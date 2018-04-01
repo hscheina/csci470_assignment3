@@ -117,7 +117,7 @@ public class XMLDownloadTask{
             // an instance of a subclass of DefaultHandler that you have written
             // to parse the xml
             betterThanSax.parse(new InputSource(new ByteArrayInputStream(
-                    xmlString.getBytes("utf-8"))), new AlbumHandler());
+                    xmlString.getBytes("utf-8"))), new AlbumHandler(this));
 
 
 
@@ -135,10 +135,26 @@ public class XMLDownloadTask{
 
     }
 
+    public ArrayList<Album> getAlbumList() {
+        return albumList;
+    }
+
+    public void printAlbumList(){
+        for (Album a : albumList) {
+            System.out.println("Album: " + a.getName());
+            System.out.println("Artist: " + a.getArtistName());
+            System.out.println("Genre: " + a.getGenre() + "\n");
+        }
+    }
+
     public static void main(String[] args){
         String testString = "https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/10/explicit.atom\n";
         XMLDownloadTask xml = new XMLDownloadTask(testString);
        // xml.doInBackground();
+        xml.printAlbumList();
+
+
+
 
     }
 }
