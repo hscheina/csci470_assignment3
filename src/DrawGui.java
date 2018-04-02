@@ -102,198 +102,52 @@ public class DrawGui extends JFrame{
             String typeSelection;
             String itemsNum;
             String explicitYN;
-            if (menuItem10.isSelected()) {
-                itemsNum = menuItem10.getText();
-            }
-            else if (menuItem25.isSelected()) {
-                itemsNum = menuItem25.getText();
-            }
-            else if (menuItem50.isSelected()) {
-                itemsNum = menuItem50.getText();
-            }
-            else if (menuItem100.isSelected()) {
-                itemsNum = menuItem100.getText();
-            }
-            else {
-                itemsNum=null;
-            }
-            System.out.println(itemsNum);
 
             if (new_music_MenuItem.isSelected()) {
-                typeSelection = new_music_MenuItem.getText();
+                typeSelection = "new-music";
             }
             else if (recent_releases_MenuItem.isSelected()) {
-                typeSelection = recent_releases_MenuItem.getText();
+                typeSelection="recent-releases";
             }
             else  if (top_albums_MenuItem.isSelected()) {
-                typeSelection = top_albums_MenuItem.getText();
-
+                typeSelection="top-albums";
             }
             else {
                 typeSelection=null;
             }
             System.out.println(typeSelection);
 
+            if (menuItem10.isSelected()) {
+                itemsNum="10";
+            }
+            else if (menuItem25.isSelected()) {
+                itemsNum="25";
+            }
+            else if (menuItem50.isSelected()) {
+                itemsNum="50";
+            }
+            else if (menuItem100.isSelected()) {
+                itemsNum="100";
+            }
+            else {
+                itemsNum=null;
+            }
+            
+            System.out.println(itemsNum);
+            
             if (yes_menuItem.isSelected()) {
-                explicitYN = yes_menuItem.getText();
+                explicitYN="explicit";
             }
             else if (no_menuItem.isSelected()) {
-                explicitYN = no_menuItem.getText();
+                explicitYN="nonexplicit";
             }
             else {
                 explicitYN=null;
             }
             System.out.println(explicitYN);
 
-            if (itemsNum=="10") {
-                if (typeSelection=="New Music") {
-                    if (explicitYN=="Yes") {
-                        //send THIS url to XML method
-                        XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/10/explicit.atom");
-                        System.out.println(XMLstuff.getURL());
-                    }
-                    if (explicitYN=="No") {
-                        //send THIS url to XML method
-                        XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/10/nonexplicit.atom");
-                        System.out.println(XMLstuff.getURL());
-                    }
-                }
-                if (typeSelection=="Recent Releases") {
-                    if (explicitYN=="Yes") {
-                        //send THIS url to XML method
-                        XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/recent-releases/all/10/explicit.atom");
-                        System.out.println(XMLstuff.getURL());
-                    }
-                    if (explicitYN=="No") {
-                        //send THIS url to XML method
-                        XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/recent-releases/all/10/nonexplicit.atom");
-                        System.out.println(XMLstuff.getURL());
-                    }
-                }
-                if (typeSelection=="Top Albums") {
-                    if (explicitYN=="Yes") {
-                        //send THIS url to XML method
-                        XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/top-albums/all/10/explicit.atom");
-                        System.out.println(XMLstuff.getURL());
-                    }
-                    if (explicitYN=="No") {
-                        //send THIS url to XML method
-                        XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/top-albums/all/10/nonexplicit.atom");
-                        System.out.println(XMLstuff.getURL());
-                    }
-                }
-            }
-
-            if (itemsNum=="25") {
-                if (typeSelection=="New Music") {
-                    if (explicitYN=="Yes") {
-                        //send THIS url to XML method
-                        XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/25/explicit.atom");
-                        System.out.println(XMLstuff.getURL());
-                    }
-                    if (explicitYN=="No") {
-                        //send THIS url to XML method
-                        XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/25/nonexplicit.atom");
-                        System.out.println(XMLstuff.getURL());
-                    }
-                }
-                if (typeSelection=="Recent Releases") {
-                    if (explicitYN=="Yes") {
-                        //send THIS url to XML method
-                        XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/recent-releases/all/25/explicit.atom");
-                        System.out.println(XMLstuff.getURL());
-                    }
-                    if (explicitYN=="No") {
-                        //send THIS url to XML method
-                        XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/recent-releases/all/25/nonexplicit.atom");
-                        System.out.println(XMLstuff.getURL());
-                    }
-                }
-                if (typeSelection=="Top Albums") {
-                    if (explicitYN=="Yes") {
-                        //send THIS url to XML method
-                        XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/top-albums/all/25/explicit.atom");
-                        System.out.println(XMLstuff.getURL());
-                    }
-                    if (explicitYN=="No") {
-                        //send THIS url to XML method
-                        XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/top-albums/all/25/nonexplicit.atom");
-                        System.out.println(XMLstuff.getURL());
-                    }
-                }
-            }
-
-            if (itemsNum=="50") {
-                if (typeSelection=="New Music") {
-                    if (explicitYN=="Yes") {
-                        //send THIS url to XML method
-                        XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/50/explicit.atom");
-                        System.out.println(XMLstuff.getURL());
-                    }
-                    if (explicitYN=="No") {
-                        //send THIS url to XML method
-                        XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/50/nonexplicit.atom");
-                        System.out.println(XMLstuff.getURL());
-                    }
-                }
-                if (typeSelection=="Recent Releases") {
-                    if (explicitYN=="Yes") {
-                        //send THIS url to XML method
-                        XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/recent-releases/all/50/explicit.atom");
-                        System.out.println(XMLstuff.getURL());
-                    }
-                    if (explicitYN=="No") {
-                        //send THIS url to XML method
-                        XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/recent-releases/all/50/nonexplicit.atom");
-                        System.out.println(XMLstuff.getURL());
-                    }
-                }
-                if (typeSelection=="Top Albums") {
-                    if (explicitYN=="Yes") {
-                        //send THIS url to XML method
-                        XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/top-albums/all/50/explicit.atom");
-                        System.out.println(XMLstuff.getURL());
-                    }
-                    if (explicitYN=="No") {
-                        //send THIS url to XML method
-                        XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/top-albums/all/50/nonexplicit.atom");
-                        System.out.println(XMLstuff.getURL());
-                    }
-                }
-            }
-
-            if (itemsNum=="100") {
-                if (typeSelection=="New Music") {
-                    if (explicitYN=="Yes") {
-                        //send THIS url to XML method
-                        XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/100/explicit.atom");
-                    }
-                    if (explicitYN=="No") {
-                        //send THIS url to XML method
-                        XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/100/nonexplicit.atom");
-                    }
-                }
-                if (typeSelection=="Recent Releases") {
-                    if (explicitYN=="Yes") {
-                        //send THIS url to XML method
-                        XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/recent-releases/all/100/explicit.atom");
-                    }
-                    if (explicitYN=="No") {
-                        //send THIS url to XML method
-                        XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/recent-releases/all/100/nonexplicit.atom");
-                    }
-                }
-                if (typeSelection=="Top Albums") {
-                    if (explicitYN=="Yes") {
-                        //send THIS url to XML method
-                        XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/top-albums/all/100/explicit.atom");
-                    }
-                    if (explicitYN=="No") {
-                        //send THIS url to XML method
-                        XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/top-albums/all/100/nonexplicit.atom");
-                    }
-                }
-            }
+            XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/"+typeSelection+"/all/"+itemsNum+"/"+explicitYN+".atom");
+            System.out.println(XMLstuff.getURL());
 
 
             if (itemsNum==null || typeSelection==null || explicitYN==null) {
