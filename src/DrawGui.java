@@ -79,8 +79,7 @@ public class DrawGui extends JFrame{
         resultsPane.setBackground(Color.WHITE);
         Border grayline = BorderFactory.createLineBorder(Color.gray);
         resultsPane.setBorder(grayline);
-//        JScrollPane resultsPaneScroll = new JScrollPane(LIST OF ALBUM RESULTS);
-//            resultsPaneScroll.setPreferredSize(new Dimension(950,500));
+        
 
 //Build the first menu.
         // menu.setMnemonic(KeyEvent.VK_A);
@@ -149,6 +148,34 @@ public class DrawGui extends JFrame{
             
             XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/"+typeSelection+"/all/"+itemsNum+"/"+explicitYN+".atom");
             System.out.println(XMLstuff.getUrl());
+            
+            JList<Album> albumJList = new JList<>();
+            DefaultListModel<Album> jmodel = new DefaultListModel<>();
+           // albumJList.setSelectionModel(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+            albumJList.setLayoutOrientation(JList.VERTICAL);
+            for (int i=0; i<XMLstuff.getAlbumList().size(); i++) {
+                jmodel.addElement(XMLstuff.getAlbumList().get(i));
+            }
+            albumJList.setModel(jmodel);
+
+            JScrollPane resultsPaneScroll = new JScrollPane(albumJList);
+            resultsPaneScroll.setPreferredSize(new Dimension(950,500));
+           // resultsPaneScroll.add(albumJList);
+            resultsPane.add(resultsPaneScroll);
+
+
+//            JList<Destination> destinationJList = new JList<>();
+//            DefaultListModel<Destination> jmodel = new DefaultListModel<>();
+//            destinationJList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+//            destinationJList.setLayoutOrientation(JList.VERTICAL);
+//            destinationJList.setVisibleRowCount(9);
+//            destinationJList.setFixedCellWidth(5);
+//            //Populating JList
+//            for(int i = 0; i < cities.length; i++) {
+//                jmodel.addElement(redeemer.getDestinationArrayList().get(i));
+//            }
+//            destinationJList.setModel(jmodel);
+            
 
         });
 
