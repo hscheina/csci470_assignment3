@@ -39,6 +39,11 @@ public class XMLDownloadTask{
 
     }
 
+    public String setURL(String xmlURL) {
+        xmlString = xmlURL;
+        return xmlString;
+    }
+
     public void doInBackground(){
 
 
