@@ -149,6 +149,7 @@ public class DrawGui extends JFrame{
             XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/"+typeSelection+"/all/"+itemsNum+"/"+explicitYN+".atom");
             System.out.println(XMLstuff.getUrl());
             
+            XMLstuff.getAlbumList();
             JList<Album> albumJList = new JList<>();
             DefaultListModel<Album> jmodel = new DefaultListModel<>();
            // albumJList.setSelectionModel(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
@@ -162,6 +163,7 @@ public class DrawGui extends JFrame{
             resultsPaneScroll.setPreferredSize(new Dimension(950,500));
            // resultsPaneScroll.add(albumJList);
             resultsPane.add(resultsPaneScroll);
+            //TODO: display the albumList on the scroll pane
 
 
 //            JList<Destination> destinationJList = new JList<>();
