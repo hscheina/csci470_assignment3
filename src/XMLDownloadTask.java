@@ -19,7 +19,6 @@ public class XMLDownloadTask{
         in the parent class one at a time, and/or add them to an arraylist
         and return the list when the task is complete so that they can be
         displayed all at once
-
      */
     String xmlString; // holds the url string passed to the constructor
     // prompt says something about a delegate variable to hold the object refence
@@ -47,7 +46,7 @@ public class XMLDownloadTask{
         try{
             //create a url object from a String that contains a valid URL
             URL url = new URL("https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/10/explicit.atom\n"
-);
+            );
             //open an http connection for the url
             connection = (HttpURLConnection) url.openConnection();
 
@@ -99,7 +98,7 @@ public class XMLDownloadTask{
         }
     }
 
-//    public String XMLBuilder(String s){
+    //    public String XMLBuilder(String s){
 //
 //
 //
@@ -150,7 +149,7 @@ public class XMLDownloadTask{
     public static void main(String[] args){
         String testString = "https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/10/explicit.atom\n";
         XMLDownloadTask xml = new XMLDownloadTask(testString);
-       // xml.doInBackground();
+        // xml.doInBackground();
         xml.printAlbumList();
 
 
@@ -158,4 +157,3 @@ public class XMLDownloadTask{
 
     }
 }
-

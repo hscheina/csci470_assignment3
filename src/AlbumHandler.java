@@ -94,9 +94,9 @@ public class AlbumHandler extends DefaultHandler{
             artistName = artistName + new String(ch, start, length);
 
        // if(genre.equals("") || genre.equals(null)) {
-            if (bCategory)
-                genre = genre + new String(ch, start, length);
-      // }
+//            if (bCategory)
+//                genre = genre + new String(ch, start, length);
+//      // }
 
    }
     public void endElement(String uri, String localName, String qName){
@@ -114,7 +114,7 @@ public class AlbumHandler extends DefaultHandler{
 
         if(qName.equalsIgnoreCase("entry")){
             Album album = new Album(albumName, artistName,genre);
-git sta            xmlDownloader.albumList.add(album);
+          xmlDownloader.albumList.add(album);
         }
     }
 
