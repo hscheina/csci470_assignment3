@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5397f36b-e600-4809-a81b-d0dda85718e7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/DrawGui.java" afterPath="$PROJECT_DIR$/src/DrawGui.java" />
-    </list>
+    <list default="true" id="5397f36b-e600-4809-a81b-d0dda85718e7" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -68,8 +66,8 @@
       <file leaf-file-name="DrawGui.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/DrawGui.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="147" column="43" lean-forward="true" selection-start-line="147" selection-start-column="43" selection-end-line="147" selection-end-column="43" />
+            <state relative-caret-position="470">
+              <caret line="163" column="15" lean-forward="true" selection-start-line="163" selection-start-column="15" selection-end-line="163" selection-end-column="15" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <marker date="1522688430000" expanded="true" signature="8393:8400" ph="{}" />
@@ -358,12 +356,12 @@
       <workItem from="1521574673045" duration="3000" />
       <workItem from="1521574711543" duration="1000" />
       <workItem from="1521574715881" duration="5699000" />
-      <workItem from="1522685189921" duration="3874000" />
+      <workItem from="1522685189921" duration="4840000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="85053000" />
+    <option name="totallyTimeSpent" value="86019000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -578,8 +576,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DrawGui.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="147" column="43" lean-forward="true" selection-start-line="147" selection-start-column="43" selection-end-line="147" selection-end-column="43" />
+        <state relative-caret-position="470">
+          <caret line="163" column="15" lean-forward="true" selection-start-line="163" selection-start-column="15" selection-end-line="163" selection-end-column="15" />
           <folding>
             <element signature="imports" expanded="true" />
             <marker date="1522688430000" expanded="true" signature="8393:8400" ph="{}" />
