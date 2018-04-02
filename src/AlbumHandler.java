@@ -1,4 +1,5 @@
 import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 public class AlbumHandler extends DefaultHandler{
@@ -20,6 +21,7 @@ public class AlbumHandler extends DefaultHandler{
     private String albumName;
     private String artistName;
     private String genre;
+ //   public Album album;
 
     public AlbumHandler(){
 
@@ -36,8 +38,9 @@ public class AlbumHandler extends DefaultHandler{
 
     }
 
+    @Override
     public void startElement(String uri, String localName, String qName,
-                             Attributes attributes){
+                             Attributes attributes) throws SAXException{
         /* example of a entry from the xml:
         <entry>
             <updated>2018-03-27T01:50:55-07:00</updated>
@@ -71,28 +74,30 @@ public class AlbumHandler extends DefaultHandler{
 //        }
 
         if(qName.equalsIgnoreCase("im:name")){
-           bAlbumName = true;
-           albumName = "";
-        }
-
-        if(qName.equalsIgnoreCase("im:artist")){
+            bAlbumName = true;
+            albumName = "";
+        } else if(qName.equalsIgnoreCase("im:artist")){
             bArtist = true;
             artistName = "";
-        }
-
-        if(qName.equalsIgnoreCase("category")){
+        } else if(qName.equalsIgnoreCase("category")){
             bCategory = true;
-            genre = "";
+            //genre = "";
             genre = attributes.getValue("term");
         }
     }
 
-    public void characters(char ch[], int start, int length){
-        if(bAlbumName)
+    public void characters(char ch[], int start, int length) throws SAXException{
+        if(bAlbumName) {
             albumName = albumName + new String(ch, start, length);
-
-        if(bArtist)
+            bAlbumName = false;
+        } else if(bArtist) {
             artistName = artistName + new String(ch, start, length);
+            bArtist = false;
+        }else if(bCategory) {
+            genre = genre + new String(ch, start, length);
+            bCategory = false;
+        }
+
 
        // if(genre.equals("") || genre.equals(null)) {
 //            if (bCategory)
@@ -100,7 +105,7 @@ public class AlbumHandler extends DefaultHandler{
 //      // }
 
    }
-    public void endElement(String uri, String localName, String qName){
+    public void endElement(String uri, String localName, String qName) throws SAXException{
         if(qName.equalsIgnoreCase("im:name")){
             bAlbumName = false;
         }
@@ -115,7 +120,7 @@ public class AlbumHandler extends DefaultHandler{
 
         if(qName.equalsIgnoreCase("entry")){
             Album album = new Album(albumName, artistName,genre);
-          xmlDownloader.albumList.add(album);
+            xmlDownloader.albumList.add(album);
         }
     }
 
