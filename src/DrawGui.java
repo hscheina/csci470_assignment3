@@ -196,12 +196,13 @@ public class DrawGui extends JFrame implements ActionListener{
 
             JScrollPane resultsPaneScroll = new JScrollPane(albumJList);
             resultsPaneScroll.setPreferredSize(new Dimension(950, 500));
-            // resultsPaneScroll.add(albumJList);
+//             resultsPaneScroll.add(albumJList);
             resultsPane.add(resultsPaneScroll);
             //TODO: display the albumList on the scroll pane
             resultsPane.revalidate();
             resultsPane.repaint();
             resultsPane.updateUI();
+
 
         }
     }
