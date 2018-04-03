@@ -1,6 +1,9 @@
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
+import javax.swing.*;
+import java.net.URL;
+
 public class AlbumHandler extends DefaultHandler{
     /* the defaulthandre should look for the following tags in the xml string
         "entry:" encloses all the information for an album.
@@ -13,6 +16,7 @@ public class AlbumHandler extends DefaultHandler{
     private boolean bAlbumName;
     private boolean bArtist;
     private boolean bCategory;
+    private boolean bImage;
 
     private XMLDownloadTask xmlDownloader;
     private String xmlResponse;
@@ -20,6 +24,7 @@ public class AlbumHandler extends DefaultHandler{
     private String albumName;
     private String artistName;
     private String genre;
+    private String albumIcon;
 
     public AlbumHandler(){
 
@@ -82,6 +87,12 @@ public class AlbumHandler extends DefaultHandler{
             genre = "";
             genre = attributes.getValue("term");
         }
+
+        if(qName.equalsIgnoreCase("im:image")){
+            bImage = true;
+            albumIcon = "";
+
+        }
     }
 
     public void characters(char ch[], int start, int length){
@@ -90,6 +101,9 @@ public class AlbumHandler extends DefaultHandler{
 
         if(bArtist)
             artistName = artistName + new String(ch, start, length);
+
+        if(bImage)
+            albumIcon = albumIcon + new String(ch, start, length);
 
    }
     public void endElement(String uri, String localName, String qName){
@@ -105,7 +119,13 @@ public class AlbumHandler extends DefaultHandler{
             bCategory = false;
         }
 
+        if(qName.equalsIgnoreCase("im:image"))
+            bImage = false;
+
         if(qName.equalsIgnoreCase("entry")){
+           // URL imageUrl = new URL(albumIcon);
+
+            ImageIcon icon = new ImageIcon();
             Album album = new Album(albumName, artistName,genre);
           this.xmlDownloader.albumList.add(album);
 

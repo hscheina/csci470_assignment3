@@ -216,7 +216,7 @@ public class DrawGui extends JFrame implements ActionListener{
 
 
             this.XMLstuff.getAlbumList();
-
+            //// TODO: 4/3/2018 table cells need to be non editable
            // Object[][] tableData = new Object[this.XMLstuff.albumList.size()][4];//4 bc four columns
             DefaultTableModel tableModel = new DefaultTableModel(columnNames,0);
             //create custom row and add it to tablemodel
