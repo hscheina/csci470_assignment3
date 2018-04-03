@@ -8,17 +8,23 @@ import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
+import java.awt.event.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URLConnection;
 import java.text.DateFormatSymbols;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class DrawGui extends JFrame implements ActionListener{
+    float[] columnWidthPercentage = {20.0f, 55.0f, 10.0f, 5.0f, 5.0f, 5.0f};
+    private String[] columnNames = {"Name", "Artist", "Genre"};
+    private JTable table;
+
     // TODO: 4/3/2018 add comments defining structure of all these variable i.e. what they meant for
     private JButton getAlbumsBtn;
     private XMLDownloadTask XMLstuff;
@@ -44,11 +50,20 @@ public class DrawGui extends JFrame implements ActionListener{
 
     public DrawGui(){
         super("Itunes Store Album");
+//        table = new JTable();
+//        resizeColumns();
+//        addComponentListener(new ComponentAdapter() {
+//            @Override
+//            public void componentResized(ComponentEvent e) {
+//                resizeColumns();
+//            }
+//        });
     }
 
 
 
     public void createAndShowGUI(){
+
         setLayout(new BorderLayout());
         setBounds(100, 100, 950, 550);
         setResizable(false);
@@ -139,10 +154,24 @@ public class DrawGui extends JFrame implements ActionListener{
         getAlbumsBtn.addActionListener(this);
     }
 
+//    private void resizeColumns(){
+//        int tW= table.getWidth();
+//        TableColumn column;
+//        TableColumnModel tableColumnModel = table.getColumnModel();
+//        int cantCols = tableColumnModel.getColumnCount();
+//        for(int i = 0; i < cantCols;i++){
+//            column = tableColumnModel.getColumn(i);
+//            int pWidth = Math.round(columnWidthPercentage[i] * tW);
+//            column.setPreferredWidth(pWidth);
+//        }
+//    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
         if (cmd.equals("Get Albums")) {
+
+            //resultsPane = new JPanel();
 
             String typeSelection;
             String itemsNum;
@@ -184,25 +213,43 @@ public class DrawGui extends JFrame implements ActionListener{
             XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/" + typeSelection + "/all/" + itemsNum + "/" + explicitYN + ".atom");
             System.out.println(this.XMLstuff.getUrl());
 
-            this.XMLstuff.getAlbumList();
-            JList<Album> albumJList = new JList<>();
-            DefaultListModel<Album> jmodel = new DefaultListModel<>();
-            // albumJList.setSelectionModel(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-            albumJList.setLayoutOrientation(JList.VERTICAL);
-            for (int i = 0; i < this.XMLstuff.getAlbumList().size(); i++) {
-                jmodel.addElement(this.XMLstuff.getAlbumList().get(i));
-            }
-            albumJList.setModel(jmodel);
 
-            JScrollPane resultsPaneScroll = new JScrollPane(albumJList);
+
+            this.XMLstuff.getAlbumList();
+
+           // Object[][] tableData = new Object[this.XMLstuff.albumList.size()][4];//4 bc four columns
+            DefaultTableModel tableModel = new DefaultTableModel(columnNames,0);
+            //create custom row and add it to tablemodel
+              for (Album a: this.XMLstuff.getAlbumList()) {
+                tableModel.addRow(new Object[]{
+                        a.getName(),
+                        a.getArtistName(),
+                        a.getGenre()
+                });
+            }
+            //add the tablemodel to the jTable
+            table = new JTable(tableModel);
+
+//            JList<Album> albumJList = new JList<>();
+//            DefaultListModel<Album> jmodel = new DefaultListModel<>();
+//            // albumJList.setSelectionModel(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+//            albumJList.setLayoutOrientation(JList.VERTICAL);
+
+           // table.setTableHeader(columnNames);
+//
+//            for (int i = 0; i < this.XMLstuff.getAlbumList().size(); i++) {
+////                jmodel.addElement(this.XMLstuff.getAlbumList().get(i));
+//
+//            }
+//            //albumJList.setModel(jmodel);
+
+//            JScrollPane resultsPaneScroll = new JScrollPane(albumJList);
+            JScrollPane resultsPaneScroll = new JScrollPane(table);
             resultsPaneScroll.setPreferredSize(new Dimension(950, 500));
 //             resultsPaneScroll.add(albumJList);
             resultsPane.add(resultsPaneScroll);
             //TODO: display the albumList on the scroll pane
-            resultsPane.revalidate();
-            resultsPane.repaint();
             resultsPane.updateUI();
-
 
         }
     }
