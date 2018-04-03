@@ -39,6 +39,7 @@ public class DrawGui extends JFrame{
 //Create the menu bar.
         JMenuBar menuBar = new JMenuBar();
         JMenu typeMenu = new JMenu("Type");
+<<<<<<< HEAD
         JCheckBoxMenuItem new_music_MenuItem = new JCheckBoxMenuItem("New Music");
         JCheckBoxMenuItem recent_releases_MenuItem = new JCheckBoxMenuItem("Recent Releases");
         JCheckBoxMenuItem top_albums_MenuItem = new JCheckBoxMenuItem("Top Albums");
@@ -84,9 +85,36 @@ public class DrawGui extends JFrame{
                     menuItem50.setSelected(false);
                 }
             });
+=======
+
+
+        JRadioButtonMenuItem new_music_MenuItem = new JRadioButtonMenuItem("New Music");
+            new_music_MenuItem.setSelected(true);
+        JRadioButtonMenuItem recent_releases_MenuItem = new JRadioButtonMenuItem("Recent Releases");
+        JRadioButtonMenuItem top_albums_MenuItem = new JRadioButtonMenuItem("Top Albums");
+        ButtonGroup typeButtonGroup = new ButtonGroup();
+        typeButtonGroup.add(new_music_MenuItem);
+        typeButtonGroup.add(recent_releases_MenuItem);
+        typeButtonGroup.add(top_albums_MenuItem);
+
+        JMenu limitMenu = new JMenu("Limit");
+        JRadioButtonMenuItem menuItem10 = new JRadioButtonMenuItem("10");
+            menuItem10.setSelected(true);
+        JRadioButtonMenuItem menuItem25 = new JRadioButtonMenuItem("25");
+        JRadioButtonMenuItem menuItem50 = new JRadioButtonMenuItem("50");
+        JRadioButtonMenuItem menuItem100 = new JRadioButtonMenuItem("100");
+        ButtonGroup itemsButtonGroup = new ButtonGroup();
+        itemsButtonGroup.add(menuItem10);
+        itemsButtonGroup.add(menuItem25);
+        itemsButtonGroup.add(menuItem50);
+        itemsButtonGroup.add(menuItem100);
+
+>>>>>>> testing_mirror
         JMenu explicitMenu = new JMenu("Explicit");
         JCheckBoxMenuItem yes_menuItem = new JCheckBoxMenuItem("Yes");
+            yes_menuItem.setSelected(true);
         JCheckBoxMenuItem no_menuItem = new JCheckBoxMenuItem("No");
+<<<<<<< HEAD
             explicitMenu.addActionListener(actionEvent -> {
                 if (yes_menuItem.isSelected()) {
                     no_menuItem.setSelected(false);
@@ -95,16 +123,31 @@ public class DrawGui extends JFrame{
                     yes_menuItem.setSelected(false);
                 }
             });
+=======
+        ButtonGroup explicitGroup = new ButtonGroup();
+        explicitGroup.add(yes_menuItem);
+        explicitGroup.add(no_menuItem);
+        
+        
+>>>>>>> testing_mirror
         JButton getAlbums = new JButton("Get Albums");
         getAlbums.setPreferredSize(new Dimension(100,20));
         JPanel buttonPanel = new JPanel(new FlowLayout());
         JPanel resultsPane = new JPanel(new FlowLayout());
+<<<<<<< HEAD
             resultsPane.setPreferredSize(new Dimension(950, 500));
             resultsPane.setBackground(Color.WHITE);
             Border grayline = BorderFactory.createLineBorder(Color.gray);
             resultsPane.setBorder(grayline);
 //        JScrollPane resultsPaneScroll = new JScrollPane(LIST OF ALBUM RESULTS);
 //            resultsPaneScroll.setPreferredSize(new Dimension(950,500));
+=======
+        resultsPane.setPreferredSize(new Dimension(950, 500));
+        resultsPane.setBackground(Color.WHITE);
+        Border grayline = BorderFactory.createLineBorder(Color.gray);
+        resultsPane.setBorder(grayline);
+        
+>>>>>>> testing_mirror
 
 //Build the first menu.
         // menu.setMnemonic(KeyEvent.VK_A);
@@ -131,6 +174,7 @@ public class DrawGui extends JFrame{
             String typeSelection;
             String itemsNum;
             String explicitYN;
+<<<<<<< HEAD
             if (menuItem10.isSelected()) {
                 itemsNum = menuItem10.getText();
             }
@@ -296,6 +340,82 @@ public class DrawGui extends JFrame{
                     }
                 }
             }
+=======
+
+            if (top_albums_MenuItem.isSelected()) {
+                typeSelection="top-albums";
+            }
+            else if (recent_releases_MenuItem.isSelected()) {
+                typeSelection="recent-releases";
+            }
+            else {
+              //  new_music_MenuItem.setSelected(true);
+                typeSelection="new-music";
+            }
+            System.out.println(typeSelection);
+            
+            
+            if (menuItem100.isSelected()) {
+                itemsNum="100";
+            }
+            else if (menuItem25.isSelected()) {
+                itemsNum="25";
+            }
+            else if (menuItem50.isSelected()) {
+                itemsNum="50";
+            }
+            else {
+              //  menuItem10.setSelected(true);
+                itemsNum="10";
+            }
+            System.out.println(itemsNum);
+
+            
+
+            if (no_menuItem.isSelected()) {
+                explicitYN = "nonexplicit";
+            }
+            else {
+              //  yes_menuItem.setSelected(true);
+                explicitYN = "explicit";
+            }
+            System.out.println(explicitYN);
+            
+            XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/"+typeSelection+"/all/"+itemsNum+"/"+explicitYN+".atom");
+            System.out.println(XMLstuff.getUrl());
+            
+            XMLstuff.getAlbumList();
+            JList<Album> albumJList = new JList<>();
+            DefaultListModel<Album> jmodel = new DefaultListModel<>();
+           // albumJList.setSelectionModel(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+            albumJList.setLayoutOrientation(JList.VERTICAL);
+            for (int i=0; i<XMLstuff.getAlbumList().size(); i++) {
+                jmodel.addElement(XMLstuff.getAlbumList().get(i));
+            }
+            albumJList.setModel(jmodel);
+
+            JScrollPane resultsPaneScroll = new JScrollPane(albumJList);
+            resultsPaneScroll.setPreferredSize(new Dimension(950,500));
+           // resultsPaneScroll.add(albumJList);
+            resultsPane.add(resultsPaneScroll);
+            //TODO: display the albumList on the scroll pane
+            resultsPane.updateUI();
+
+
+//            JList<Destination> destinationJList = new JList<>();
+//            DefaultListModel<Destination> jmodel = new DefaultListModel<>();
+//            destinationJList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+//            destinationJList.setLayoutOrientation(JList.VERTICAL);
+//            destinationJList.setVisibleRowCount(9);
+//            destinationJList.setFixedCellWidth(5);
+//            //Populating JList
+//            for(int i = 0; i < cities.length; i++) {
+//                jmodel.addElement(redeemer.getDestinationArrayList().get(i));
+//            }
+//            destinationJList.setModel(jmodel);
+            
+
+>>>>>>> testing_mirror
         });
 
 
