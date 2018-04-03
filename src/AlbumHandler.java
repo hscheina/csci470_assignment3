@@ -64,11 +64,8 @@ public class AlbumHandler extends DefaultHandler{
                  ℗ 2018 Third Man Records under exclusive license to Columbia Records, a division of Sony Music Entertainment&lt;/font&gt; &lt;/td&gt; &lt;/tr&gt; &lt;/table&gt;
             </content>
         </entry>
+        */
 
-         */
-//        if(qName.equalsIgnoreCase("entry")){
-//
-//        }
 
         if(qName.equalsIgnoreCase("im:name")){
            bAlbumName = true;
@@ -93,11 +90,6 @@ public class AlbumHandler extends DefaultHandler{
 
         if(bArtist)
             artistName = artistName + new String(ch, start, length);
-
-       // if(genre.equals("") || genre.equals(null)) {
-//            if (bCategory)
-//                genre = genre + new String(ch, start, length);
-//      // }
 
    }
     public void endElement(String uri, String localName, String qName){
