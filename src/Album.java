@@ -1,8 +1,8 @@
 public class Album {
     // these variables hold the respective variables from Itunes library
-    private String name, //album name
-            artistName,
-            genre;
+    String name; //album name
+    String artistName;
+    String genre;
 
     //default constructor. initializes all variables to an empty string
     public Album(){
@@ -32,7 +32,7 @@ public class Album {
     }
 
     public void setArtistName(String artistName) {
-        artistName = artistName;
+        this.artistName = artistName;
     }
 
     public String getGenre() {
@@ -40,7 +40,7 @@ public class Album {
     }
 
     public void setGenre(String genre) {
-        genre = genre;
+        this.genre = genre;
     }
 
     public String toString(){

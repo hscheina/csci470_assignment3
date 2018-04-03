@@ -34,22 +34,26 @@ public class XMLDownloadTask{
         albumList = new ArrayList<>();
     }
 
-    public void setURL(String s) {
-        url=s;
-    }
     public String getUrl(){
-        return url;
+        return xmlString;
     }
 
+    public void setUrl(String s){
+        xmlString = s;
+    }
     //string constructor
     public XMLDownloadTask(String url){
         xmlString = url;
-      //  xmlString = "https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/10/explicit.atom\n";
         albumList = new ArrayList<>();
-        doInBackground();
+        this.doInBackground();
 
     }
 
+    public String setURL(String xmlURL) {
+        xmlString = xmlURL;
+        this.doInBackground();
+        return xmlString;
+    }
 
     public void doInBackground(){
 
@@ -133,6 +137,7 @@ public class XMLDownloadTask{
 
 
 
+
         } catch (ParserConfigurationException e){
             System.out.println("sax config error");
         } catch (SAXException e){
@@ -161,6 +166,7 @@ public class XMLDownloadTask{
     public static void main(String[] args){
         String testString = "https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/10/explicit.atom\n";
         XMLDownloadTask xml = new XMLDownloadTask(testString);
+
         // xml.doInBackground();
         xml.printAlbumList();
 

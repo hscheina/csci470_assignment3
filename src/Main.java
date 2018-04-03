@@ -21,7 +21,9 @@ import java.util.ArrayList;
 public abstract class Main {
 
     public static void main(String[] args){
-        DrawGui gui = new DrawGui();
+        EventQueue.invokeLater(() ->{
+            DrawGui gui = new DrawGui();
+        });
 
     }
 

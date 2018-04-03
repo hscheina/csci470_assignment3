@@ -115,7 +115,8 @@ public class AlbumHandler extends DefaultHandler{
 
         if(qName.equalsIgnoreCase("entry")){
             Album album = new Album(albumName, artistName,genre);
-          xmlDownloader.albumList.add(album);
+          this.xmlDownloader.albumList.add(album);
+
         }
     }
 

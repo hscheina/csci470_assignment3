@@ -164,6 +164,7 @@ public class DrawGui extends JFrame{
            // resultsPaneScroll.add(albumJList);
             resultsPane.add(resultsPaneScroll);
             //TODO: display the albumList on the scroll pane
+            resultsPane.updateUI();
 
 
 //            JList<Destination> destinationJList = new JList<>();
