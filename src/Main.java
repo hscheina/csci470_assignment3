@@ -23,6 +23,7 @@ public abstract class Main {
     public static void main(String[] args){
         EventQueue.invokeLater(() ->{
             DrawGui gui = new DrawGui();
+            gui.createAndShowGUI();
         });
 
     }
