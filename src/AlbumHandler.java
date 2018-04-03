@@ -11,16 +11,27 @@ public class AlbumHandler extends DefaultHandler{
      */
 
 
-    private boolean bAlbumName;
-    private boolean bArtist;
-    private boolean bCategory;
+     boolean bAlbumName;
+     boolean bArtist;
+     boolean bCategory;
+
+    public XMLDownloadTask getXmlDownloader() {
+        return xmlDownloader;
+    }
+
+    public void setXmlDownloader(XMLDownloadTask xmlDownloader) {
+        this.xmlDownloader = xmlDownloader;
+    }
 
     private XMLDownloadTask xmlDownloader;
     private String xmlResponse;
-//    private String entryTag;
-    private String albumName;
-    private String artistName;
-    private String genre;
+
+
+
+    //    private String entryTag;
+    String albumName;
+    String artistName;
+    String genre;
  //   public Album album;
 
     public AlbumHandler(){
@@ -81,17 +92,20 @@ public class AlbumHandler extends DefaultHandler{
             artistName = "";
         } else if(qName.equalsIgnoreCase("category")){
             bCategory = true;
-            //genre = "";
-            genre = attributes.getValue("term");
+            genre = "";
+            genre = attributes.getValue("label");
         }
     }
 
+    @Override
     public void characters(char ch[], int start, int length) throws SAXException{
         if(bAlbumName) {
             albumName = albumName + new String(ch, start, length);
+//            setAlbumName(albumName + new String(ch, start, length));
             bAlbumName = false;
         } else if(bArtist) {
             artistName = artistName + new String(ch, start, length);
+//            setArtistName(artistName + new String(ch, start, length));
             bArtist = false;
         }else if(bCategory) {
             genre = genre + new String(ch, start, length);
@@ -105,6 +119,7 @@ public class AlbumHandler extends DefaultHandler{
 //      // }
 
    }
+   @Override
     public void endElement(String uri, String localName, String qName) throws SAXException{
         if(qName.equalsIgnoreCase("im:name")){
             bAlbumName = false;
@@ -119,7 +134,9 @@ public class AlbumHandler extends DefaultHandler{
         }
 
         if(qName.equalsIgnoreCase("entry")){
-            Album album = new Album(albumName, artistName,genre);
+            Album album = new Album(this.albumName,this.artistName,this.genre);
+            album.setArtistName(artistName);
+            album.setGenre(genre);
             xmlDownloader.albumList.add(album);
         }
     }
