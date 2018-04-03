@@ -34,6 +34,23 @@ public class XMLDownloadTask{
         albumList = new ArrayList<>();
     }
 
+<<<<<<< HEAD
+    public void setURL(String xmlURL) {
+        xmlString = xmlURL;
+    }
+
+    public String getURL() {
+        return xmlString;
+    }
+
+    public ArrayList<Album> getAlbumList() {
+        return albumList;
+    }
+
+    //string constructor
+    public XMLDownloadTask(String url){
+        xmlString = getURL();
+=======
     public String getUrl(){
         return xmlString;
     }
@@ -44,6 +61,7 @@ public class XMLDownloadTask{
     //string constructor
     public XMLDownloadTask(String url){
         xmlString = url;
+>>>>>>> guistuff
         albumList = new ArrayList<>();
         this.doInBackground();
 
@@ -61,8 +79,12 @@ public class XMLDownloadTask{
         HttpURLConnection connection = null;
         try{
             //create a url object from a String that contains a valid URL
+<<<<<<< HEAD
+            URL url = new URL(xmlString);
+=======
             URL url = new URL(getUrl());
            // URL url = new URL("https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/10/explicit.atom\n");
+>>>>>>> guistuff
             //open an http connection for the url
             connection = (HttpURLConnection) url.openConnection();
 
@@ -126,7 +148,7 @@ public class XMLDownloadTask{
             // an instance of a subclass of DefaultHandler that you have written
             // to parse the xml
             betterThanSax.parse(new InputSource(new ByteArrayInputStream(
-                    xmlString.getBytes("utf-8"))), new AlbumHandler(this));
+                    xmlString.getBytes("utf-8"))), new AlbumHandler());
 
         } catch (ParserConfigurationException e){
             System.out.println("sax config error");
@@ -139,23 +161,15 @@ public class XMLDownloadTask{
         }
     }
 
-    public ArrayList<Album> getAlbumList() {
-        return albumList;
-    }
-
-    public void printAlbumList(){
-        for (Album a : albumList) {
-            System.out.println("Album: " + a.getName());
-            System.out.println("Artist: " + a.getArtistName());
-            System.out.println("Genre: " + a.getGenre() + "\n");
-        }
-    }
-
     public static void main(String[] args){
         String testString = "https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/10/explicit.atom\n";
         XMLDownloadTask xml = new XMLDownloadTask(testString);
+<<<<<<< HEAD
+       // xml.doInBackground();
+=======
 
         xml.printAlbumList();
+>>>>>>> guistuff
 
     }
 }

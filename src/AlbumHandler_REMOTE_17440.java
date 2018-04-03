@@ -29,6 +29,7 @@ public class AlbumHandler extends DefaultHandler{
         xmlDownloader = passedxmldl;
     }
 
+
     public AlbumHandler(String xmlString, XMLDownloadTask task){
         xmlDownloader = task;
         xmlResponse = xmlString;

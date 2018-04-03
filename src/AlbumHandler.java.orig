@@ -29,6 +29,7 @@ public class AlbumHandler extends DefaultHandler{
         xmlDownloader = passedxmldl;
     }
 
+
     public AlbumHandler(String xmlString, XMLDownloadTask task){
         xmlDownloader = task;
         xmlResponse = xmlString;
@@ -106,8 +107,12 @@ public class AlbumHandler extends DefaultHandler{
 
         if(qName.equalsIgnoreCase("entry")){
             Album album = new Album(albumName, artistName,genre);
+<<<<<<< HEAD
+            xmlDownloader.albumList.add(album);
+=======
           this.xmlDownloader.albumList.add(album);
 
+>>>>>>> guistuff
         }
     }
 
