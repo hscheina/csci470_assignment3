@@ -239,6 +239,8 @@ public class DrawGui extends JFrame implements ActionListener{
             }
             //add the tablemodel to the jTable
             table = new JTable(tableModel);
+            Dimension tableSize =  resultsPane.getPreferredSize();
+            table.getColumnModel().getColumn(0).setPreferredWidth(Math.round(tableSize.width*0.35f));
 
 //            JList<Album> albumJList = new JList<>();
 //            DefaultListModel<Album> jmodel = new DefaultListModel<>();
@@ -258,7 +260,7 @@ public class DrawGui extends JFrame implements ActionListener{
             resultsPaneScroll.setPreferredSize(new Dimension(950, 500));
 //             resultsPaneScroll.add(albumJList);
             resultsPane.add(resultsPaneScroll);
-            //TODO: display the albumList on the scroll pane
+        
             resultsPane.updateUI();
             System.out.println("shoulda printed");
 
