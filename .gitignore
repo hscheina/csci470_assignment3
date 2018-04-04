@@ -1,4 +1,4 @@
-.idea/workspace.xml
+.idea/
 tasks.xml
 
 # Compiled source #
@@ -38,3 +38,6 @@ tasks.xml
 .Trashes
 ehthumbs.db
 Thumbs.db
+'.idea' 
+csci470_assignment3.iml 
+'csci470_assignment3.iml' 
