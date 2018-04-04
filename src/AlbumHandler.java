@@ -53,7 +53,7 @@ public class AlbumHandler extends DefaultHandler{
             <im:name>Boarding House Reach</im:name>
             <category im:id="20" term="Alternative" scheme="https://itunes.apple.com/us/genre/id20" label="Alternative"/>
             <category im:id="34" term="Music" scheme="https://itunes.apple.com/us/genre/id34" label="Music"/>
-            <category im:id="21" term="Rock" scheme="https://itunes.apple.com/us/genre/id21" label="Rock"/>
+            <category im:id="21" term="Rock" scheme="https://itunes.apple.com/us/genre/id21" label="Rock
             <im:image>http://is5.mzstatic.com/image/thumb/Music128/v4/09/77/b7/0977b797-ed55-edae-4c53-4dc76295d938/886446893808.jpg/200x200bb.png</im:image>
             <im:releaseDate>2018-03-23</im:releaseDate>    <link href="https://itunes.apple.com/us/album/boarding-house-reach/1337879490?app=itunes" type="text/html" rel="alternate"/>
             <rights>℗ 2018 Third Man Records under exclusive license to Columbia Records, a division of Sony Music Entertainment</rights>
