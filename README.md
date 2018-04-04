@@ -2,11 +2,19 @@ Assignment three for cs470
 by: Haley Scheina && Alonso Arteaga
 
 todos: 
-> complete main.java
-> complete Drawgui.java
-> complete XMLDownloadTask.java
-> complete AlbumHandler.java
-x complete Album.java
+* ~~complete main.java~~
+* complete Drawgui.java
+    * add comments to private variable declarations for neatness
+    * **gui is not redrawing after it draws the first time.
+        clicking on 'get albums', changing settings, and clicking
+        get album, does nothing.**
+            
+            * expected behavior: clicking 'getAlbum' should fetch a new xml string and redraw the frame with the updated xml contents
+    * fix the radio button selection issue, probably with listeners         
+                
+* ~~complete XMLDownloadTask.java~~
+* ~~complete AlbumHandler.java~~
+* ~~complete Album.java~~
 
 extra credit:
 > display albums (20pts)

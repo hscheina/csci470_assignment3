@@ -1,6 +1,9 @@
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
+import javax.swing.*;
+import java.net.URL;
+
 public class AlbumHandler extends DefaultHandler{
     /* the defaulthandre should look for the following tags in the xml string
         "entry:" encloses all the information for an album.
@@ -13,6 +16,7 @@ public class AlbumHandler extends DefaultHandler{
     private boolean bAlbumName;
     private boolean bArtist;
     private boolean bCategory;
+    private boolean bImage;
 
     private XMLDownloadTask xmlDownloader;
     private String xmlResponse;
@@ -20,6 +24,7 @@ public class AlbumHandler extends DefaultHandler{
     private String albumName;
     private String artistName;
     private String genre;
+    private String albumIcon;
 
     public AlbumHandler(){
 
@@ -48,7 +53,7 @@ public class AlbumHandler extends DefaultHandler{
             <im:name>Boarding House Reach</im:name>
             <category im:id="20" term="Alternative" scheme="https://itunes.apple.com/us/genre/id20" label="Alternative"/>
             <category im:id="34" term="Music" scheme="https://itunes.apple.com/us/genre/id34" label="Music"/>
-            <category im:id="21" term="Rock" scheme="https://itunes.apple.com/us/genre/id21" label="Rock"/>
+            <category im:id="21" term="Rock" scheme="https://itunes.apple.com/us/genre/id21" label="Rock
             <im:image>http://is5.mzstatic.com/image/thumb/Music128/v4/09/77/b7/0977b797-ed55-edae-4c53-4dc76295d938/886446893808.jpg/200x200bb.png</im:image>
             <im:releaseDate>2018-03-23</im:releaseDate>    <link href="https://itunes.apple.com/us/album/boarding-house-reach/1337879490?app=itunes" type="text/html" rel="alternate"/>
             <rights>℗ 2018 Third Man Records under exclusive license to Columbia Records, a division of Sony Music Entertainment</rights>
@@ -64,11 +69,8 @@ public class AlbumHandler extends DefaultHandler{
                  ℗ 2018 Third Man Records under exclusive license to Columbia Records, a division of Sony Music Entertainment&lt;/font&gt; &lt;/td&gt; &lt;/tr&gt; &lt;/table&gt;
             </content>
         </entry>
+        */
 
-         */
-//        if(qName.equalsIgnoreCase("entry")){
-//
-//        }
 
         if(qName.equalsIgnoreCase("im:name")){
            bAlbumName = true;
@@ -85,6 +87,12 @@ public class AlbumHandler extends DefaultHandler{
             genre = "";
             genre = attributes.getValue("term");
         }
+
+        if(qName.equalsIgnoreCase("im:image")){
+            bImage = true;
+            albumIcon = "";
+
+        }
     }
 
     public void characters(char ch[], int start, int length){
@@ -94,10 +102,8 @@ public class AlbumHandler extends DefaultHandler{
         if(bArtist)
             artistName = artistName + new String(ch, start, length);
 
-       // if(genre.equals("") || genre.equals(null)) {
-//            if (bCategory)
-//                genre = genre + new String(ch, start, length);
-//      // }
+        if(bImage)
+            albumIcon = albumIcon + new String(ch, start, length);
 
    }
     public void endElement(String uri, String localName, String qName){
@@ -113,7 +119,13 @@ public class AlbumHandler extends DefaultHandler{
             bCategory = false;
         }
 
+        if(qName.equalsIgnoreCase("im:image"))
+            bImage = false;
+
         if(qName.equalsIgnoreCase("entry")){
+           // URL imageUrl = new URL(albumIcon);
+
+            ImageIcon icon = new ImageIcon();
             Album album = new Album(albumName, artistName,genre);
           this.xmlDownloader.albumList.add(album);
 

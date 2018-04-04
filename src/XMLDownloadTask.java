@@ -121,12 +121,6 @@ public class XMLDownloadTask{
         }
     }
 
-    //    public String XMLBuilder(String s){
-//
-//
-//
-//        xmlString = s;
-//    }
     //string xml cointains the xml downloaded from itunes. this method
     // has to store the contents into a album container
     public void saxParser(String xml){
@@ -141,10 +135,6 @@ public class XMLDownloadTask{
             betterThanSax.parse(new InputSource(new ByteArrayInputStream(
                     xmlString.getBytes("utf-8"))), new AlbumHandler(this));
 
-
-
-
-
         } catch (ParserConfigurationException e){
             System.out.println("sax config error");
         } catch (SAXException e){
@@ -154,8 +144,6 @@ public class XMLDownloadTask{
         } catch (IOException e){
             System.out.println("IO error");
         }
-
-
     }
 
     public ArrayList<Album> getAlbumList() {
@@ -174,11 +162,7 @@ public class XMLDownloadTask{
         String testString = "https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/10/explicit.atom\n";
         XMLDownloadTask xml = new XMLDownloadTask(testString);
 
-        // xml.doInBackground();
         xml.printAlbumList();
-
-
-
 
     }
 }
