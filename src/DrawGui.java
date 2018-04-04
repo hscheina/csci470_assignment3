@@ -171,6 +171,7 @@ public class DrawGui extends JFrame implements ActionListener{
         String cmd = e.getActionCommand();
         if (cmd.equals("Get Albums")) {
             resultsPane.removeAll();
+            XMLstuff.clearAlbumList();
             DefaultTableModel tableModel = new DefaultTableModel(columnNames,0);
             tableModel.setRowCount(0);
             //resultsPane = new JPanel();

@@ -46,7 +46,9 @@ public class XMLDownloadTask{
         xmlString = url;
         albumList = new ArrayList<>();
         this.doInBackground();
-
+    }
+    public void clearAlbumList() {
+        albumList.clear();
     }
 
     public String setURL(String xmlURL) {
