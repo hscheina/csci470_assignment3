@@ -108,18 +108,7 @@ public class DrawGui extends JFrame implements ActionListener{
         getAlbumsBtn = new JButton("Get Albums");
         getAlbumsBtn.setPreferredSize(new Dimension(100,20));
         JPanel buttonPanel = new JPanel(new FlowLayout());
-<<<<<<< HEAD
-        JPanel resultsPane = new JPanel(new FlowLayout());
-            resultsPane.setPreferredSize(new Dimension(950, 500));
-            resultsPane.setBackground(Color.WHITE);
-            Border grayline = BorderFactory.createLineBorder(Color.gray);
-            resultsPane.setBorder(grayline);
-//        JScrollPane resultsPaneScroll = new JScrollPane(albumJList);
-//            resultsPaneScroll.setPreferredSize(new Dimension(950,500));
-//            resultsPane.add(resultsPaneScroll);
-
-//Build the first menu.
-=======
+        
         resultsPane = new JPanel(new FlowLayout());
         resultsPane.setPreferredSize(new Dimension(950, 500));
         resultsPane.setBackground(Color.WHITE);
@@ -128,7 +117,7 @@ public class DrawGui extends JFrame implements ActionListener{
 
 
         //Build the first menu.
->>>>>>> a69aa94cada5f3d13e5a87ba194361046432dfe1
+
         // menu.setMnemonic(KeyEvent.VK_A);
         menuBar.add(typeMenu);
         typeMenu.add(new_music_MenuItem);
