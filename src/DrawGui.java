@@ -119,13 +119,13 @@ public class DrawGui extends JFrame implements ActionListener{
 
 
         getAlbumsBtn = new JButton("Get Albums");
-        getAlbumsBtn.setPreferredSize(new Dimension(100,20));
+        getAlbumsBtn.setPreferredSize(new Dimension(100,30));
         JPanel buttonPanel = new JPanel(new FlowLayout());
         resultsPane = new JPanel(new FlowLayout());
         resultsPane.setPreferredSize(new Dimension(950, 500));
-        resultsPane.setBackground(Color.WHITE);
-        Border grayline = BorderFactory.createLineBorder(Color.gray);
-        resultsPane.setBorder(grayline);
+        //resultsPane.setBackground(Color.WHITE);
+        //Border grayline = BorderFactory.createLineBorder(Color.gray);
+        //resultsPane.setBorder(grayline);
 
 
         //Build the first menu.
@@ -170,7 +170,9 @@ public class DrawGui extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
         if (cmd.equals("Get Albums")) {
-
+            resultsPane.removeAll();
+            DefaultTableModel tableModel = new DefaultTableModel(columnNames,0);
+            tableModel.setRowCount(0);
             //resultsPane = new JPanel();
 
             String typeSelection;
@@ -218,7 +220,11 @@ public class DrawGui extends JFrame implements ActionListener{
             this.XMLstuff.getAlbumList();
             //// TODO: 4/3/2018 table cells need to be non editable
            // Object[][] tableData = new Object[this.XMLstuff.albumList.size()][4];//4 bc four columns
-            DefaultTableModel tableModel = new DefaultTableModel(columnNames,0);
+
+
+//            DefaultTableModel tableModel = new DefaultTableModel(columnNames,0);
+
+
             //create custom row and add it to tablemodel
               for (Album a: this.XMLstuff.getAlbumList()) {
                 tableModel.addRow(new Object[]{
@@ -250,6 +256,7 @@ public class DrawGui extends JFrame implements ActionListener{
             resultsPane.add(resultsPaneScroll);
             //TODO: display the albumList on the scroll pane
             resultsPane.updateUI();
+            System.out.println("shoulda printed");
 
         }
     }

@@ -16,7 +16,7 @@ public class Album {
         icon = null;
     }
 
-    public Album(String al, String ar, String ge, ImageIcon){
+    public Album(String al, String ar, String ge){
         setName(al);
         setArtistName(ar);
         setGenre(ge);
