@@ -93,8 +93,6 @@ public class AlbumHandler extends DefaultHandler{
             bCategory = true;
             genre = "";
             genre = attributes.getValue("term");
-
-
         }else if(qName.equalsIgnoreCase("im:image")){
             bImage = true;
             albumIconUrl = "";
