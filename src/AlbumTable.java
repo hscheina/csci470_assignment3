@@ -1,5 +1,10 @@
+/***************************************************
+ * Haley Scheina & Alonso Arteaga
+ * CSCI 470
+ * Assignment 2
+ **************************************************/
+
 import javax.swing.*;
-import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 
 public class AlbumTable extends JTable{

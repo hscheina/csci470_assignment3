@@ -1,36 +1,21 @@
+/***************************************************
+ * Haley Scheina & Alonso Arteaga
+ * CSCI 470
+ * Assignment 2
+ **************************************************/
+
 import javax.swing.*;
 import java.awt.*;
-
-
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.TitledBorder;
-import javax.swing.event.ChangeEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
-import java.awt.event.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.net.URLConnection;
-import java.text.DateFormatSymbols;
-import java.time.Clock;
-import java.util.HashMap;
-import java.util.Scanner;
-import java.util.ArrayList;
-import javax.swing.Timer;
 
 public class DrawGui extends JFrame implements ActionListener{
-    float[] columnWidthPercentage = {20.0f, 55.0f, 10.0f, 5.0f, 5.0f, 5.0f};
     private String[] columnNames = {"Name", "Artist", "Genre", "Album Cover"};
     private JTable table;
 
-    // TODO: 4/3/2018 add comments defining structure of all these variable i.e. what they meant for
+    //jframe content
     private JButton getAlbumsBtn;
     private XMLDownloadTask XMLstuff;
     private JMenuBar menuBar;
@@ -55,17 +40,7 @@ public class DrawGui extends JFrame implements ActionListener{
 
     public DrawGui(){
         super("Itunes Store Album");
-//        table = new JTable();
-//        resizeColumns();
-//        addComponentListener(new ComponentAdapter() {
-//            @Override
-//            public void componentResized(ComponentEvent e) {
-//                resizeColumns();
-//            }
-//        });
     }
-
-
 
     public void createAndShowGUI(){
 
@@ -81,34 +56,47 @@ public class DrawGui extends JFrame implements ActionListener{
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         pack();
         setVisible(true);
-
     }
 
     private void createMenu(){
-
         menuBar = new JMenuBar();
-
         typeMenu = new JMenu("Type");
         typeMenu.setToolTipText("choose between New Music, Recent Releases, or Top Albums");
         add(menuBar);
         add(typeMenu);
 
+        //choose type of output
         new_music_MenuItem = new JRadioButtonMenuItem("New Music");
+        new_music_MenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,
+                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         new_music_MenuItem.setSelected(true);
         recent_releases_MenuItem = new JRadioButtonMenuItem("Recent Releases");
+        recent_releases_MenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R,
+                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         top_albums_MenuItem = new JRadioButtonMenuItem("Top Albums");
+        top_albums_MenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T,
+                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         ButtonGroup typeButtonGroup = new ButtonGroup();
         typeButtonGroup.add(new_music_MenuItem);
         typeButtonGroup.add(recent_releases_MenuItem);
         typeButtonGroup.add(top_albums_MenuItem);
-
         JMenu limitMenu = new JMenu("Limit");
         limitMenu.setToolTipText("choose how many results to show per page");
+
+        //choose how many rows displayed in output
         menuItem10 = new JRadioButtonMenuItem("10");
+        menuItem10.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
+                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         menuItem10.setSelected(true);
         menuItem25 = new JRadioButtonMenuItem("25");
+        menuItem25.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2,
+                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         menuItem50 = new JRadioButtonMenuItem("50");
+        menuItem50.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_3,
+                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         menuItem100 = new JRadioButtonMenuItem("100");
+        menuItem100.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_4,
+                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         ButtonGroup itemsButtonGroup = new ButtonGroup();
         itemsButtonGroup.add(menuItem10);
         itemsButtonGroup.add(menuItem25);
@@ -118,10 +106,14 @@ public class DrawGui extends JFrame implements ActionListener{
         JMenu explicitMenu = new JMenu("Explicit");
         explicitMenu.setToolTipText("Explicit or safe for kids songs");
 
+        //explicit or nonexplicit content preference
         yes_menuItem = new JCheckBoxMenuItem("Yes");
+        yes_menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y,
+                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         yes_menuItem.setSelected(true);
-
         no_menuItem = new JCheckBoxMenuItem("No");
+        no_menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,
+                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         ButtonGroup explicitGroup = new ButtonGroup();
         explicitGroup.add(yes_menuItem);
         explicitGroup.add(no_menuItem);
@@ -132,13 +124,7 @@ public class DrawGui extends JFrame implements ActionListener{
         JPanel buttonPanel = new JPanel(new FlowLayout());
         resultsPane = new JPanel(new FlowLayout());
         resultsPane.setPreferredSize(new Dimension(1020, 500));
-        //resultsPane.setBackground(Color.WHITE);
-        //Border grayline = BorderFactory.createLineBorder(Color.gray);
-        //resultsPane.setBorder(grayline);
 
-
-        //Build the first menu.
-        // menu.setMnemonic(KeyEvent.VK_A);
         menuBar.add(typeMenu);
         typeMenu.add(new_music_MenuItem);
         typeMenu.add(recent_releases_MenuItem);
@@ -156,6 +142,7 @@ public class DrawGui extends JFrame implements ActionListener{
         buttonPanel.add(getAlbumsBtn);
     }
 
+    //listener for button click
     private void addListeners(){
         getAlbumsBtn.addActionListener(this);
 
@@ -178,7 +165,6 @@ public class DrawGui extends JFrame implements ActionListener{
                 }
             };
             tableModel.setRowCount(0);
-            //resultsPane = new JPanel();
 
             String typeSelection;
             String itemsNum;
@@ -189,7 +175,6 @@ public class DrawGui extends JFrame implements ActionListener{
             } else if (recent_releases_MenuItem.isSelected()) {
                 typeSelection = "recent-releases";
             } else {
-                //  new_music_MenuItem.setSelected(true);
                 typeSelection = "new-music";
             }
             System.out.println(typeSelection);
@@ -202,7 +187,6 @@ public class DrawGui extends JFrame implements ActionListener{
             } else if (menuItem50.isSelected()) {
                 itemsNum = "50";
             } else {
-                //  menuItem10.setSelected(true);
                 itemsNum = "10";
             }
             System.out.println(itemsNum);
@@ -211,24 +195,14 @@ public class DrawGui extends JFrame implements ActionListener{
             if (no_menuItem.isSelected()) {
                 explicitYN = "nonexplicit";
             } else {
-                //  yes_menuItem.setSelected(true);
                 explicitYN = "explicit";
             }
             System.out.println(explicitYN);
 
-//            this.XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/" + typeSelection + "/all/" + itemsNum + "/" + explicitYN + ".atom");
             XMLstuff.setURL("https://rss.itunes.apple.com/api/v1/us/itunes-music/" + typeSelection + "/all/" + itemsNum + "/" + explicitYN + ".atom");
             System.out.println(this.XMLstuff.getUrl());
 
-
-
             this.XMLstuff.getAlbumList();
-            //// TODO: 4/3/2018 table cells need to be non editable
-           // Object[][] tableData = new Object[this.XMLstuff.albumList.size()][4];//4 bc four columns
-
-
-//            DefaultTableModel tableModel = new DefaultTableModel(columnNames,0);
-
 
             //create custom row and add it to tablemodel
               for (Album a: this.XMLstuff.getAlbumList()) {
@@ -239,6 +213,7 @@ public class DrawGui extends JFrame implements ActionListener{
                         new ImageIcon(a.getIcon())
                 });
             }
+
             //add the tablemodel to the jTable
             table = new JTable(tableModel) {
                 public boolean isCellEditable(int row, int column) {
@@ -251,38 +226,20 @@ public class DrawGui extends JFrame implements ActionListener{
             //name
             table.getColumnModel().getColumn(0).setPreferredWidth(Math.round(tableSize.width*0.50f));
             //artist
-            table.getColumnModel().getColumn(1).setPreferredWidth(Math.round(tableSize.width*0.30f));
+            table.getColumnModel().getColumn(1).setPreferredWidth(Math.round(tableSize.width*0.20f));
             //genre
-            table.getColumnModel().getColumn(2).setPreferredWidth(Math.round(tableSize.width*0.10f));
+            table.getColumnModel().getColumn(2).setPreferredWidth(Math.round(tableSize.width*0.20f));
             //album cover
             table.getColumnModel().getColumn(3).setPreferredWidth(Math.round(tableSize.width*0.10f));
 
-//            JList<Album> albumJList = new JList<>();
-//            DefaultListModel<Album> jmodel = new DefaultListModel<>();
-//            // albumJList.setSelectionModel(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-//            albumJList.setLayoutOrientation(JList.VERTICAL);
-
-           // table.setTableHeader(columnNames);
-//
-//            for (int i = 0; i < this.XMLstuff.getAlbumList().size(); i++) {
-////                jmodel.addElement(this.XMLstuff.getAlbumList().get(i));
-//
-//            }
-//            //albumJList.setModel(jmodel);
-
-//            JScrollPane resultsPaneScroll = new JScrollPane(albumJList);
             JScrollPane resultsPaneScroll = new JScrollPane(table);
             resultsPaneScroll.setPreferredSize(new Dimension(1020, 500));
-//             resultsPaneScroll.add(albumJList);
             resultsPane.add(resultsPaneScroll);
-
-
+        
             resultsPane.updateUI();
-            System.out.println("shoulda printed");
 
         }
     }
- 
   
 
     private static void main(String[] args){
