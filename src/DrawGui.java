@@ -39,7 +39,7 @@ public class DrawGui extends JFrame implements ActionListener{
 
 
     public DrawGui(){
-        super("Itunes Store Album");
+        super("iTunes Store Album");
     }
 
     public void createAndShowGUI(){
