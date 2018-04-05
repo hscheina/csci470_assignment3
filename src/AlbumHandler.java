@@ -2,6 +2,12 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.image.BufferedImage;
+import java.io.FileOutputStream;
+import java.net.URL;
+
 public class AlbumHandler extends DefaultHandler{
     /* the defaulthandre should look for the following tags in the xml string
         "entry:" encloses all the information for an album.
@@ -11,28 +17,19 @@ public class AlbumHandler extends DefaultHandler{
      */
 
 
-     boolean bAlbumName;
-     boolean bArtist;
-     boolean bCategory;
-
-    public XMLDownloadTask getXmlDownloader() {
-        return xmlDownloader;
-    }
-
-    public void setXmlDownloader(XMLDownloadTask xmlDownloader) {
-        this.xmlDownloader = xmlDownloader;
-    }
+    private boolean bAlbumName;
+    private boolean bArtist;
+    private boolean bCategory;
+    private boolean bImage;
 
     private XMLDownloadTask xmlDownloader;
     private String xmlResponse;
-
-
-
-    //    private String entryTag;
-    String albumName;
-    String artistName;
-    String genre;
- //   public Album album;
+//    private String entryTag;
+    private String albumName;
+    private String artistName;
+    private String genre;
+    private String albumIconUrl;
+    private ImageIcon albumIcon;
 
     public AlbumHandler(){
 
@@ -49,7 +46,7 @@ public class AlbumHandler extends DefaultHandler{
 
     }
 
-    @Override
+
     public void startElement(String uri, String localName, String qName,
                              Attributes attributes) throws SAXException{
         /* example of a entry from the xml:
@@ -78,49 +75,44 @@ public class AlbumHandler extends DefaultHandler{
                  ℗ 2018 Third Man Records under exclusive license to Columbia Records, a division of Sony Music Entertainment&lt;/font&gt; &lt;/td&gt; &lt;/tr&gt; &lt;/table&gt;
             </content>
         </entry>
+        */
 
-         */
-//        if(qName.equalsIgnoreCase("entry")){
-//
-//        }
 
         if(qName.equalsIgnoreCase("im:name")){
-            bAlbumName = true;
-            albumName = "";
-        } else if(qName.equalsIgnoreCase("im:artist")){
+           bAlbumName = true;
+           albumName = "";
+        }
+
+        if(qName.equalsIgnoreCase("im:artist")){
             bArtist = true;
             artistName = "";
-        } else if(qName.equalsIgnoreCase("category")){
+        }
+        // TODO: 4/4/18 fix 'music' error
+        if(qName.equalsIgnoreCase("category")){
             bCategory = true;
             genre = "";
-            genre = attributes.getValue("label");
+            genre = attributes.getValue("term");
+        }else if(qName.equalsIgnoreCase("im:image")){
+            bImage = true;
+            albumIconUrl = "";
+
         }
     }
 
-    @Override
-    public void characters(char ch[], int start, int length) throws SAXException{
-        if(bAlbumName) {
+    public void characters(char ch[], int start, int length) throws SAXException {
+        if (bAlbumName) {
             albumName = albumName + new String(ch, start, length);
 //            setAlbumName(albumName + new String(ch, start, length));
-            bAlbumName = false;
-        } else if(bArtist) {
+
+        } else if (bArtist) {
             artistName = artistName + new String(ch, start, length);
-//            setArtistName(artistName + new String(ch, start, length));
-            bArtist = false;
-        }else if(bCategory) {
-            genre = genre + new String(ch, start, length);
-            bCategory = false;
+        } else if (bImage) {
+            albumIconUrl = albumIconUrl + new String(ch, start, length);
         }
+    }
 
 
-       // if(genre.equals("") || genre.equals(null)) {
-//            if (bCategory)
-//                genre = genre + new String(ch, start, length);
-//      // }
-
-   }
-   @Override
-    public void endElement(String uri, String localName, String qName) throws SAXException{
+   public void endElement(String uri, String localName, String qName){
         if(qName.equalsIgnoreCase("im:name")){
             bAlbumName = false;
         }
@@ -133,11 +125,24 @@ public class AlbumHandler extends DefaultHandler{
             bCategory = false;
         }
 
+        if(qName.equalsIgnoreCase("im:image")) {
+            bImage = false;
+            try {
+                URL url = new URL(albumIconUrl);
+                BufferedImage bufferedImage = ImageIO.read(url);
+                ImageIO.write(bufferedImage, "png", new FileOutputStream("../out/"));// A file named OutputImage.png will be created in the location /home/visruth/
+                albumIcon = new ImageIcon(bufferedImage);
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
         if(qName.equalsIgnoreCase("entry")){
-            Album album = new Album(this.albumName,this.artistName,this.genre);
-            album.setArtistName(artistName);
-            album.setGenre(genre);
-            xmlDownloader.albumList.add(album);
+           // URL imageUrl = new URL(albumIcon);
+
+
+            Album album = new Album(albumName, artistName,genre, albumIcon);
+            this.xmlDownloader.albumList.add(album);
+
         }
     }
 

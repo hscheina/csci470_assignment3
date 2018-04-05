@@ -1,20 +1,26 @@
+import javax.swing.*;
+
 public class Album {
     // these variables hold the respective variables from Itunes library
-    String name; //album name
-    String artistName;
-    String genre;
+    private String name; //album name
+    private String artistName;
+    private String genre;
+    private ImageIcon icon;
+
 
     //default constructor. initializes all variables to an empty string
     public Album(){
         name = "";
         artistName = "";
         genre = "";
+        icon = null;
     }
 
-    public Album(String al, String ar, String ge){
+    public Album(String al, String ar, String ge, ImageIcon ic){
         setName(al);
         setArtistName(ar);
         setGenre(ge);
+        setIcon(ic);
     }
 
 
@@ -41,6 +47,14 @@ public class Album {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    public ImageIcon getIcon() {
+        return icon;
+    }
+
+    public void setIcon(ImageIcon icon) {
+        this.icon = icon;
     }
 
     public String toString(){
