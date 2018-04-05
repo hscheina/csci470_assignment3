@@ -175,7 +175,14 @@ public class DrawGui extends JFrame implements ActionListener{
         if (cmd.equals("Get Albums")) {
             resultsPane.removeAll();
             XMLstuff.clearAlbumList();
-            DefaultTableModel tableModel = new DefaultTableModel(columnNames,0);
+            DefaultTableModel tableModel = new DefaultTableModel(columnNames,0) {
+                @Override
+                public Class getColumnClass(int column)
+                {
+                    if (column == 3) return ImageIcon.class;
+                    return Object.class;
+                }
+            };
             tableModel.setRowCount(0);
             //resultsPane = new JPanel();
 
@@ -235,7 +242,7 @@ public class DrawGui extends JFrame implements ActionListener{
                         a.getName(),
                         a.getArtistName(),
                         a.getGenre(),
-                        a.getIcon()
+                        new ImageIcon(a.getIcon())
                 });
             }
             //add the tablemodel to the jTable

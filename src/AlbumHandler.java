@@ -91,8 +91,9 @@ public class AlbumHandler extends DefaultHandler{
         if(qName.equalsIgnoreCase("category")){
             bCategory = true;
            // genre = "";
-            genre = attributes.getValue("term");
+                genre = attributes.getValue("term");
         }else if(qName.equalsIgnoreCase("im:image")){
+
             bImage = true;
             albumIconUrl = "";
 
@@ -107,7 +108,8 @@ public class AlbumHandler extends DefaultHandler{
         } else if (bArtist) {
             artistName = artistName + new String(ch, start, length);
         } else if (bImage) {
-            albumIconUrl = albumIconUrl + new String(ch, start, length);
+                albumIconUrl = albumIconUrl + new String(ch, start, length);
+
         }
     }
 
