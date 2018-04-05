@@ -81,7 +81,7 @@ public class AlbumHandler extends DefaultHandler{
             bArtist = true;
             artistName = "";
         }
-
+        // TODO: 4/4/18 fix 'music' error
         if(qName.equalsIgnoreCase("category")){
             bCategory = true;
            // genre = "";
