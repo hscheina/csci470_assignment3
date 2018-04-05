@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import javax.swing.table.DefaultTableModel;
 
 public class DrawGui extends JFrame implements ActionListener{
@@ -63,21 +64,37 @@ public class DrawGui extends JFrame implements ActionListener{
         add(menuBar);
         add(typeMenu);
 
+        //choose type of output
         new_music_MenuItem = new JRadioButtonMenuItem("New Music");
+        new_music_MenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,
+                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         new_music_MenuItem.setSelected(true);
         recent_releases_MenuItem = new JRadioButtonMenuItem("Recent Releases");
+        recent_releases_MenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R,
+                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         top_albums_MenuItem = new JRadioButtonMenuItem("Top Albums");
+        top_albums_MenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T,
+                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         ButtonGroup typeButtonGroup = new ButtonGroup();
         typeButtonGroup.add(new_music_MenuItem);
         typeButtonGroup.add(recent_releases_MenuItem);
         typeButtonGroup.add(top_albums_MenuItem);
         JMenu limitMenu = new JMenu("Limit");
 
+        //choose how many rows displayed in output
         menuItem10 = new JRadioButtonMenuItem("10");
+        menuItem10.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,
+                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         menuItem10.setSelected(true);
         menuItem25 = new JRadioButtonMenuItem("25");
+        menuItem25.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2,
+                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         menuItem50 = new JRadioButtonMenuItem("50");
+        menuItem50.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_3,
+                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         menuItem100 = new JRadioButtonMenuItem("100");
+        menuItem100.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_4,
+                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         ButtonGroup itemsButtonGroup = new ButtonGroup();
         itemsButtonGroup.add(menuItem10);
         itemsButtonGroup.add(menuItem25);
@@ -85,11 +102,14 @@ public class DrawGui extends JFrame implements ActionListener{
         itemsButtonGroup.add(menuItem100);
 
         JMenu explicitMenu = new JMenu("Explicit");
-
+        //explicit or nonexplicit content preference
         yes_menuItem = new JCheckBoxMenuItem("Yes");
+        yes_menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y,
+                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         yes_menuItem.setSelected(true);
-
         no_menuItem = new JCheckBoxMenuItem("No");
+        no_menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,
+                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         ButtonGroup explicitGroup = new ButtonGroup();
         explicitGroup.add(yes_menuItem);
         explicitGroup.add(no_menuItem);
