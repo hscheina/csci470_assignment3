@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public class DrawGui extends JFrame implements ActionListener{
     float[] columnWidthPercentage = {20.0f, 55.0f, 10.0f, 5.0f, 5.0f, 5.0f};
-    private String[] columnNames = {"Name", "Artist", "Genre"};
+    private String[] columnNames = {"Name", "Artist", "Genre", "Album Cover"};
     private JTable table;
 
     // TODO: 4/3/2018 add comments defining structure of all these variable i.e. what they meant for
@@ -68,7 +68,7 @@ public class DrawGui extends JFrame implements ActionListener{
     public void createAndShowGUI(){
 
         setLayout(new BorderLayout());
-        setBounds(100, 100, 950, 550);
+        setBounds(100, 100, 1020, 550);
         setResizable(false);
         createMenu();// create the menu bar, menus, and menu items, and adds listeners for the menu items
         addListeners();
@@ -125,7 +125,7 @@ public class DrawGui extends JFrame implements ActionListener{
         getAlbumsBtn.setPreferredSize(new Dimension(100,30));
         JPanel buttonPanel = new JPanel(new FlowLayout());
         resultsPane = new JPanel(new FlowLayout());
-        resultsPane.setPreferredSize(new Dimension(950, 500));
+        resultsPane.setPreferredSize(new Dimension(1020, 500));
         //resultsPane.setBackground(Color.WHITE);
         //Border grayline = BorderFactory.createLineBorder(Color.gray);
         //resultsPane.setBorder(grayline);
@@ -234,13 +234,21 @@ public class DrawGui extends JFrame implements ActionListener{
                 tableModel.addRow(new Object[]{
                         a.getName(),
                         a.getArtistName(),
-                        a.getGenre()
+                        a.getGenre(),
+                        "fehwjkfwehcke"
                 });
             }
             //add the tablemodel to the jTable
             table = new JTable(tableModel);
             Dimension tableSize =  resultsPane.getPreferredSize();
-            table.getColumnModel().getColumn(0).setPreferredWidth(Math.round(tableSize.width*0.35f));
+            //name
+            table.getColumnModel().getColumn(0).setPreferredWidth(Math.round(tableSize.width*0.50f));
+            //artist
+            table.getColumnModel().getColumn(1).setPreferredWidth(Math.round(tableSize.width*0.30f));
+            //genre
+            table.getColumnModel().getColumn(2).setPreferredWidth(Math.round(tableSize.width*0.10f));
+            //album cover
+            table.getColumnModel().getColumn(3).setPreferredWidth(Math.round(tableSize.width*0.10f));
 
 //            JList<Album> albumJList = new JList<>();
 //            DefaultListModel<Album> jmodel = new DefaultListModel<>();
@@ -257,7 +265,7 @@ public class DrawGui extends JFrame implements ActionListener{
 
 //            JScrollPane resultsPaneScroll = new JScrollPane(albumJList);
             JScrollPane resultsPaneScroll = new JScrollPane(table);
-            resultsPaneScroll.setPreferredSize(new Dimension(950, 500));
+            resultsPaneScroll.setPreferredSize(new Dimension(1020, 500));
 //             resultsPaneScroll.add(albumJList);
             resultsPane.add(resultsPaneScroll);
         
