@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.FileOutputStream;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class AlbumHandler extends DefaultHandler{
     /* the defaulthandre should look for the following tags in the xml string
@@ -90,8 +91,10 @@ public class AlbumHandler extends DefaultHandler{
         // TODO: 4/4/18 fix 'music' error
         if(qName.equalsIgnoreCase("category")){
             bCategory = true;
-           // genre = "";
+            genre = "";
             genre = attributes.getValue("term");
+
+
         }else if(qName.equalsIgnoreCase("im:image")){
             bImage = true;
             albumIconUrl = "";
