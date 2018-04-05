@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URLConnection;
 import java.text.DateFormatSymbols;
+import java.time.Clock;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -145,10 +146,11 @@ public class DrawGui extends JFrame implements ActionListener{
         menuBar.add(explicitMenu);
         explicitMenu.add(yes_menuItem);
         explicitMenu.add(no_menuItem);
-
         this.add(buttonPanel, BorderLayout.PAGE_START);
         this.add(resultsPane, BorderLayout.CENTER);
         buttonPanel.add(getAlbumsBtn);
+        
+        
 
 
     }
@@ -174,8 +176,16 @@ public class DrawGui extends JFrame implements ActionListener{
         String cmd = e.getActionCommand();
         if (cmd.equals("Get Albums")) {
             resultsPane.removeAll();
+            
             XMLstuff.clearAlbumList();
-            DefaultTableModel tableModel = new DefaultTableModel(columnNames,0);
+            DefaultTableModel tableModel = new DefaultTableModel(columnNames,0) {
+                @Override
+                public Class getColumnClass(int column)
+                {
+                    if (column == 3) return ImageIcon.class;
+                    return Object.class;
+                }
+            };
             tableModel.setRowCount(0);
             //resultsPane = new JPanel();
 
@@ -235,7 +245,7 @@ public class DrawGui extends JFrame implements ActionListener{
                         a.getName(),
                         a.getArtistName(),
                         a.getGenre(),
-                        a.getIcon()
+                        new ImageIcon(a.getIcon())
                 });
             }
             //add the tablemodel to the jTable

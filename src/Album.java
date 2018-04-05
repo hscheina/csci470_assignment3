@@ -1,4 +1,8 @@
 import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
 
 public class Album {
     // these variables hold the respective variables from Itunes library
@@ -49,8 +53,19 @@ public class Album {
         this.genre = genre;
     }
 
-    public ImageIcon getIcon() {
-        return icon;
+    public Image getIcon() {
+        return getScaledImage(icon.getImage());
+    }
+
+    private Image getScaledImage(Image sourceImage) {
+
+        BufferedImage resizedImage = new BufferedImage(50, 50,
+                BufferedImage.TYPE_INT_ARGB);
+
+        Graphics2D g2 = resizedImage.createGraphics();
+        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g2.drawImage(sourceImage, 0, 0, 50, 50, null); g2.dispose();
+        return resizedImage;
     }
 
     public void setIcon(ImageIcon icon) {

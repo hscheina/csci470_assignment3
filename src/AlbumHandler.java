@@ -110,7 +110,8 @@ public class AlbumHandler extends DefaultHandler{
         } else if (bArtist) {
             artistName = artistName + new String(ch, start, length);
         } else if (bImage) {
-            albumIconUrl = albumIconUrl + new String(ch, start, length);
+                albumIconUrl = albumIconUrl + new String(ch, start, length);
+
         }
     }
 
