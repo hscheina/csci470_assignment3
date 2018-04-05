@@ -235,7 +235,7 @@ public class DrawGui extends JFrame implements ActionListener{
                         a.getName(),
                         a.getArtistName(),
                         a.getGenre(),
-                        "fehwjkfwehcke"
+                        a.getIcon()
                 });
             }
             //add the tablemodel to the jTable

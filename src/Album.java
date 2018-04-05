@@ -48,6 +48,14 @@ public class Album {
         this.genre = genre;
     }
 
+    public ImageIcon getIcon() {
+        return icon;
+    }
+
+    public void setIcon(ImageIcon icon) {
+        this.icon = icon;
+    }
+
     public String toString(){
         return "Album: " + getName() + "; Artists name: "
                 + getArtistName() + "; genre: " + getGenre() + "\n";
