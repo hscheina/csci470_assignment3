@@ -23,6 +23,7 @@ import java.time.Clock;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.ArrayList;
+import javax.swing.Timer;
 
 public class DrawGui extends JFrame implements ActionListener{
     float[] columnWidthPercentage = {20.0f, 55.0f, 10.0f, 5.0f, 5.0f, 5.0f};
@@ -86,7 +87,9 @@ public class DrawGui extends JFrame implements ActionListener{
     private void createMenu(){
 
         menuBar = new JMenuBar();
+
         typeMenu = new JMenu("Type");
+        typeMenu.setToolTipText("choose between New Music, Recent Releases, or Top Albums");
         add(menuBar);
         add(typeMenu);
 
@@ -98,8 +101,9 @@ public class DrawGui extends JFrame implements ActionListener{
         typeButtonGroup.add(new_music_MenuItem);
         typeButtonGroup.add(recent_releases_MenuItem);
         typeButtonGroup.add(top_albums_MenuItem);
-        JMenu limitMenu = new JMenu("Limit");
 
+        JMenu limitMenu = new JMenu("Limit");
+        limitMenu.setToolTipText("choose how many results to show per page");
         menuItem10 = new JRadioButtonMenuItem("10");
         menuItem10.setSelected(true);
         menuItem25 = new JRadioButtonMenuItem("25");
@@ -112,6 +116,7 @@ public class DrawGui extends JFrame implements ActionListener{
         itemsButtonGroup.add(menuItem100);
 
         JMenu explicitMenu = new JMenu("Explicit");
+        explicitMenu.setToolTipText("Explicit or safe for kids songs");
 
         yes_menuItem = new JCheckBoxMenuItem("Yes");
         yes_menuItem.setSelected(true);
@@ -149,32 +154,18 @@ public class DrawGui extends JFrame implements ActionListener{
         this.add(buttonPanel, BorderLayout.PAGE_START);
         this.add(resultsPane, BorderLayout.CENTER);
         buttonPanel.add(getAlbumsBtn);
-        
-        
-
-
     }
 
     private void addListeners(){
         getAlbumsBtn.addActionListener(this);
-    }
 
-//    private void resizeColumns(){
-//        int tW= table.getWidth();
-//        TableColumn column;
-//        TableColumnModel tableColumnModel = table.getColumnModel();
-//        int cantCols = tableColumnModel.getColumnCount();
-//        for(int i = 0; i < cantCols;i++){
-//            column = tableColumnModel.getColumn(i);
-//            int pWidth = Math.round(columnWidthPercentage[i] * tW);
-//            column.setPreferredWidth(pWidth);
-//        }
-//    }
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
         if (cmd.equals("Get Albums")) {
+
             resultsPane.removeAll();
             
             XMLstuff.clearAlbumList();
@@ -284,7 +275,8 @@ public class DrawGui extends JFrame implements ActionListener{
             resultsPaneScroll.setPreferredSize(new Dimension(1020, 500));
 //             resultsPaneScroll.add(albumJList);
             resultsPane.add(resultsPaneScroll);
-        
+
+
             resultsPane.updateUI();
             System.out.println("shoulda printed");
 

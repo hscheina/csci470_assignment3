@@ -32,7 +32,6 @@ public class AlbumHandler extends DefaultHandler{
     private String finalGenre = "";
     private String albumIconUrl;
     private ImageIcon albumIcon;
-    int counter=0;
 
 
     public AlbumHandler(){
@@ -80,9 +79,6 @@ public class AlbumHandler extends DefaultHandler{
             </content>
         </entry>
         */
-
-        if(qName.equalsIgnoreCase("entry"))
-            counter=1;
 
 
         if(qName.equalsIgnoreCase("im:name")){
