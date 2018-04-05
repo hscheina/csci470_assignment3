@@ -239,7 +239,12 @@ public class DrawGui extends JFrame implements ActionListener{
                 });
             }
             //add the tablemodel to the jTable
-            table = new JTable(tableModel);
+            table = new JTable(tableModel) {
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+            
             Dimension tableSize =  resultsPane.getPreferredSize();
             //name
             table.getColumnModel().getColumn(0).setPreferredWidth(Math.round(tableSize.width*0.50f));
@@ -274,7 +279,8 @@ public class DrawGui extends JFrame implements ActionListener{
 
         }
     }
-
+ 
+  
 
     private static void main(String[] args){
         EventQueue.invokeLater(() -> {
