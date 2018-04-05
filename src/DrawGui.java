@@ -244,6 +244,7 @@ public class DrawGui extends JFrame implements ActionListener{
                     return false;
                 }
             };
+              table.setRowHeight(50);
             
             Dimension tableSize =  resultsPane.getPreferredSize();
             //name
