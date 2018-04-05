@@ -90,7 +90,7 @@ public class AlbumHandler extends DefaultHandler{
         // TODO: 4/4/18 fix 'music' error
         if(qName.equalsIgnoreCase("category")){
             bCategory = true;
-            genre = "";
+           // genre = "";
             genre = attributes.getValue("term");
         }else if(qName.equalsIgnoreCase("im:image")){
             bImage = true;
