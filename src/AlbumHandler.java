@@ -84,7 +84,7 @@ public class AlbumHandler extends DefaultHandler{
 
         if(qName.equalsIgnoreCase("category")){
             bCategory = true;
-            genre = "";
+           // genre = "";
             genre = attributes.getValue("term");
         }
 
