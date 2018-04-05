@@ -28,8 +28,11 @@ public class AlbumHandler extends DefaultHandler{
     private String albumName;
     private String artistName;
     private String genre;
+    private String finalGenre = "";
     private String albumIconUrl;
     private ImageIcon albumIcon;
+    int counter=0;
+
 
     public AlbumHandler(){
 
@@ -46,7 +49,7 @@ public class AlbumHandler extends DefaultHandler{
 
     }
 
-
+    @Override
     public void startElement(String uri, String localName, String qName,
                              Attributes attributes) throws SAXException{
         /* example of a entry from the xml:
@@ -77,6 +80,9 @@ public class AlbumHandler extends DefaultHandler{
         </entry>
         */
 
+        if(qName.equalsIgnoreCase("entry"))
+            counter=1;
+
 
         if(qName.equalsIgnoreCase("im:name")){
            bAlbumName = true;
@@ -88,15 +94,18 @@ public class AlbumHandler extends DefaultHandler{
             artistName = "";
         }
         // TODO: 4/4/18 fix 'music' error
-        if(qName.equalsIgnoreCase("category")){
-            bCategory = true;
-           // genre = "";
-                genre = attributes.getValue("term");
-        }else if(qName.equalsIgnoreCase("im:image")){
 
+        if (qName.equalsIgnoreCase("category")) {
+            bCategory = true;
+
+            // genre = ""
+            genre = attributes.getValue("label");
+
+
+
+        }else if(qName.equalsIgnoreCase("im:image")){
             bImage = true;
             albumIconUrl = "";
-
         }
     }
 
@@ -125,6 +134,11 @@ public class AlbumHandler extends DefaultHandler{
 
         if(qName.equalsIgnoreCase("category")) {
             bCategory = false;
+            //finalGenre = genre;
+            if(finalGenre.equals(""))
+                finalGenre = genre;
+
+
         }
 
         if(qName.equalsIgnoreCase("im:image")) {
@@ -132,7 +146,7 @@ public class AlbumHandler extends DefaultHandler{
             try {
                 URL url = new URL(albumIconUrl);
                 BufferedImage bufferedImage = ImageIO.read(url);
-                ImageIO.write(bufferedImage, "png", new FileOutputStream("../out/"));// A file named OutputImage.png will be created in the location /home/visruth/
+                ImageIO.write(bufferedImage, "png", new FileOutputStream("../out/"));
                 albumIcon = new ImageIcon(bufferedImage);
             } catch(Exception e) {
                 e.printStackTrace();
@@ -142,9 +156,10 @@ public class AlbumHandler extends DefaultHandler{
            // URL imageUrl = new URL(albumIcon);
 
 
-            Album album = new Album(albumName, artistName,genre, albumIcon);
-            this.xmlDownloader.albumList.add(album);
+            Album album = new Album(albumName, artistName,finalGenre, albumIcon);
 
+            this.xmlDownloader.albumList.add(album);
+            finalGenre="";
         }
     }
 
