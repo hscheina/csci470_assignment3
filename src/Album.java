@@ -1,3 +1,9 @@
+/***************************************************
+ * Haley Scheina & Alonso Arteaga
+ * CSCI 470
+ * Assignment 2
+ **************************************************/
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;

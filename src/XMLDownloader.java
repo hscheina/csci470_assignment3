@@ -1,5 +1,10 @@
+/***************************************************
+ * Haley Scheina & Alonso Arteaga
+ * CSCI 470
+ * Assignment 2
+ **************************************************/
+
 import javax.swing.*;
-import java.awt.*;
 
 public class XMLDownloader extends JFrame {
     public XMLDownloader() {
