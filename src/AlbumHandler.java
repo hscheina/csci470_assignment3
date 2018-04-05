@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.FileOutputStream;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class AlbumHandler extends DefaultHandler{
     /* the defaulthandre should look for the following tags in the xml string
